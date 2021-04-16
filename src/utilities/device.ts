@@ -4,13 +4,14 @@ function getGCD(a: number, b: number): number{
 interface aspectRatio  {
     x:number, y:number
 }
-export function getAspectRation(): aspectRatio{
+export function getAspectRatio(): aspectRatio{
 
     const gcd = getGCD(screen.width, screen.height);
-    return {x : screen.width/gcd, y : screen.height / gcd}
+    return {x : window.innerWidth/gcd, y : window.innerHeight / gcd}
 
 }
 
-export default function setTargetSize(ratio: aspectRatio = getAspectRation()): {height :number, width: number}{
-    return {height : 10, width: 10};
+export default function setTargetSize(ratio: aspectRatio = getAspectRatio()): {height :number, width: number}{
+    let decimal = ratio.x/ratio.y;
+    return {height : window.innerWidth/decimal, width:window.innerWidth};
 }

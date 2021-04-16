@@ -18,8 +18,8 @@ export default class testLevel extends Level{
     }
     create(){
         super.create();
-        let background = this.add.image(0,0,'background');
-        background.depth = -100;
+        //let background = this.add.image(0,0,'background').setOrigin(0).setDisplaySize(this.game.canvas.width, this.game.canvas.width);
+        //background.depth = -100;
         this.player = this.add.sprite(200,400,'marine');
         this.anims.create({
             key:'idle',

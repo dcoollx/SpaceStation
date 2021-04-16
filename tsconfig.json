@@ -1,7 +1,7 @@
 {
   "include": ["src/**/*.ts", "src/main.ts"],
   "compilerOptions": {
-    "outDir": "staging",
+    "noEmit": true,
     "noImplicitAny": true,
     "module": "es6",
     "target": "es5",

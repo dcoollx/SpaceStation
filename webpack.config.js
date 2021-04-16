@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode:'development',
-  entry: './staging/main.js',
+  entry: './src/main.ts',
   module: {
     rules: [
       {
@@ -25,6 +25,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
+    assetModuleFilename:"images/[hash][ext][query]",
     path: path.resolve(__dirname, 'dist'),
   },
 };
