@@ -18,8 +18,10 @@ export default class testLevel extends Level{
     }
     create(){
         super.create();
-        //let background = this.add.image(0,0,'background').setOrigin(0).setDisplaySize(this.game.canvas.width, this.game.canvas.width);
-        //background.depth = -100;
+        const width = this.scale.width;
+        const height = this.scale.height;
+        let background = this.add.image(0.5 * width,0.5* height,'background').setOrigin(0.5).setDisplaySize(this.game.canvas.width, this.game.canvas.width).setScrollFactor(0);
+        background.depth = -100;
         this.player = this.add.sprite(200,400,'marine');
         this.anims.create({
             key:'idle',
@@ -34,28 +36,23 @@ export default class testLevel extends Level{
             repeat:-1
         });
         this.player.scale = 2;
-        this.player.setOrigin(0,0);
+        this.player;
         this.player.play('idle');
-        document.addEventListener('keydown',e=>{
-            if(e.keyCode == 37){//left
-                this.player.flipX = true;
-                this.speed.x = -1
-                //this.player.play('run')
-            }else if(e.keyCode == 39){//right
-                this.player.flipX = false;
-                this.speed.x = 1;
-                //this.player.play('run');
-            }
-            else{
-                this.speed.x =0;
-            }
-        });
+       
 
         
     }
     update(delta:any){
-        const FRICTION = 0.3;
-        this.player.setPosition(this.player.x + this.speed.x, this.player.y);
-        this.speed.x -= this.speed.x * FRICTION 
-        }
+       const cam = this.cameras.main;
+       const SPEED = 3;
+
+       if(this.cursors.left.isDown){
+           cam.scrollX -= SPEED;
+           console.log('left');
+       }
+       
+       if(this.cursors.right.isDown){
+        cam.scrollX += SPEED;
+       }
+    }
 }

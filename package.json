@@ -14,9 +14,9 @@
     "compile": "tsc --watch",
     "prebuild": "tsc",
     "build": "webpack",
-    "prepush":"git add .",
-    "push":"git commit -m",
-    "postpush":"git push"
+    "prepush": "git add .",
+    "push": "git commit -m",
+    "postpush": "git push"
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",

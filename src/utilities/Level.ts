@@ -7,7 +7,8 @@ import Shadows from '../images/shadow_Tileset_16x16.png'
 
 export default class Level extends Phaser.Scene{
     private mapName:string;
-    private level: any
+    private level: any;
+    cursors : Phaser.Types.Input.Keyboard.CursorKeys;
     public tileSets: Array<Phaser.Tilemaps.Tileset>
     constructor(level: any, scene_name : string,){
         super({key:scene_name});
@@ -20,12 +21,14 @@ export default class Level extends Phaser.Scene{
         this.load.image('Backrounds',background);
         this.load.image('Shadows', Shadows);
         this.load.image('Ground_and_walls',Ground_and_walls);
-        this.load.tilemapTiledJSON(this.mapName, this.level)
+        this.load.tilemapTiledJSON(this.mapName, this.level);
+        this.cursors = this.input.keyboard.createCursorKeys();
         //this.load.tilemapTiledJSON(this.mapName,this.level)
         
 
     }
     create(){
+        this.cameras.main.setBounds(0,0,this.game.scale.width * 3,this.game.scale.height);
         let test = this.make.tilemap({key:this.mapName});
         console.log('adding tilesets');
         this.level.tilesets.forEach((ts:any)=>{
