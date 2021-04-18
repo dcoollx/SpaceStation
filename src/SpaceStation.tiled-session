@@ -45,6 +45,26 @@
                 "y": 1603.072
             }
         },
+        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scenes/levels/test_level/Test_2.json": {
+            "scale": 1.7330078125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 508.3647019046547,
+                "y": 278.9947030316692
+            }
+        },
+        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scenes/levels/test_level/Test_2.json#Backrounds": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scenes/levels/test_level/Test_2.json#Ground_and_walls": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scenes/levels/test_level/Test_2.json#Shadows": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scenes/levels/test_level/test_level3.json": {
             "scale": 2.9117499999999996,
             "selectedLayer": 0,
@@ -72,10 +92,30 @@
         },
         "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scripts/scenes/Test_2.json#Shadows": {
             "scaleInDock": 1
+        },
+        "scenes/levels/test_level/Test_2.json": {
+            "scale": 1.7330078125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 11.540628874112485,
+                "y": 225.90781021075173
+            }
+        },
+        "scenes/levels/test_level/Test_2.json#Backrounds": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "scenes/levels/test_level/Test_2.json#Ground_and_walls": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "scenes/levels/test_level/Test_2.json#Shadows": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "last.exportedFilePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/dist/assets/Levels",
-    "last.imagePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/images",
+    "last.imagePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/images",
     "map.height": 25,
     "map.lastUsedExportFilter": "JavaScript map files (*.js)",
     "map.lastUsedFormat": "json",
@@ -83,15 +123,13 @@
     "map.tileWidth": 16,
     "map.width": 25,
     "openFiles": [
+        "scenes/levels/test_level/Test_2.json"
     ],
     "project": "SpaceStation.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "C:/Users/dj/Desktop/untitled.json",
-        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scenes/levels/test_level/test_level3.json",
-        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/dist/assets/Levels/Test_2.json",
-        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scripts/scenes/Test_2.json",
-        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/dist/assets/testLevel.json"
+        "scenes/levels/test_level/Test_2.json",
+        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/template/src/scenes/levels/test_level/Test_2.json"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {

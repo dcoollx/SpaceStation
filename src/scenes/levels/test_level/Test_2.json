@@ -32,6 +32,17 @@
          "id":3,
          "name":"Shadows",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"Collision",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"Death",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":25,
@@ -48,7 +59,7 @@
         {
          "columns":1,
          "firstgid":1,
-         "image":"..\/Images\/futuristic_mech_ pixel_art_assets\/futuristic  mech pixel art assets\/tilesets\/Mech background tileset 128x128.png",
+         "image":"..\/..\/..\/images\/Mech_background_tileset_128x128.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
@@ -61,7 +72,7 @@
         {
          "columns":5,
          "firstgid":2,
-         "image":"..\/Images\/futuristic_mech_ pixel_art_assets\/futuristic  mech pixel art assets\/tilesets\/mech tileset 16x16.png",
+         "image":"..\/..\/..\/images\/mech_tileset_16x16.png",
          "imageheight":64,
          "imagewidth":80,
          "margin":0,
@@ -69,12 +80,52 @@
          "spacing":0,
          "tilecount":20,
          "tileheight":16,
+         "tiles":[
+                {
+                 "id":1,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":3,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":0,
+                             "id":5,
+                             "name":"",
+                             "polygon":[
+                                    {
+                                     "x":0,
+                                     "y":0
+                                    }, 
+                                    {
+                                     "x":6.63636363636364,
+                                     "y":7.54545454545454
+                                    }, 
+                                    {
+                                     "x":9.81818181818182,
+                                     "y":-1.63636363636364
+                                    }],
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":0,
+                             "x":5.27272727272727,
+                             "y":6.45454545454546
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }],
          "tilewidth":16
         }, 
         {
          "columns":5,
          "firstgid":22,
-         "image":"..\/Images\/futuristic_mech_ pixel_art_assets\/futuristic  mech pixel art assets\/tilesets\/shadow Tileset 16x16.png",
+         "image":"..\/..\/..\/images\/shadow_Tileset_16x16.png",
          "imageheight":64,
          "imagewidth":80,
          "margin":0,
@@ -82,6 +133,32 @@
          "spacing":0,
          "tilecount":20,
          "tileheight":16,
+         "tiles":[
+                {
+                 "id":1,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":16,
+                             "id":2,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":16,
+                             "x":0,
+                             "y":0
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }],
          "tilewidth":16
         }],
  "tilewidth":16,

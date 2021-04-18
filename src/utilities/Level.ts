@@ -8,6 +8,8 @@ import Shadows from '../images/shadow_Tileset_16x16.png'
 export default class Level extends Phaser.Scene{
     private mapName:string;
     private level: any;
+    map:Phaser.Tilemaps.Tilemap;
+    shadowLayer: Phaser.Tilemaps.TilemapLayer;
     cursors : Phaser.Types.Input.Keyboard.CursorKeys;
     public tileSets: Array<Phaser.Tilemaps.Tileset>
     constructor(level: any, scene_name : string,){
@@ -15,6 +17,7 @@ export default class Level extends Phaser.Scene{
         this.mapName = scene_name + '_map';
         this.level = level;
         this.tileSets = [];
+        this.map;
     
     }
     preload(){
@@ -29,14 +32,13 @@ export default class Level extends Phaser.Scene{
     }
     create(){
         this.cameras.main.setBounds(0,0,this.game.scale.width * 3,this.game.scale.height);
-        let test = this.make.tilemap({key:this.mapName});
-        console.log('adding tilesets');
+        this.map = this.make.tilemap({key:this.mapName});
         this.level.tilesets.forEach((ts:any)=>{
-             test.addTilesetImage(ts.name, ts.name, ts.tilewidth, ts.tileheight, 0,0,ts.gid);
+             this.map.addTilesetImage(ts.name, ts.name, ts.tilewidth, ts.tileheight, 0,0,ts.gid);
         });
-        console.log(test);
+        console.log(this.map);
         this.level.layers.forEach((layer:any, i:number)=>{
-            test.createLayer(layer.name,test.tilesets, layer.of);
+            this.shadowLayer = this.map.createLayer(layer.name,this.map.tilesets, layer.of).setCollisionByProperty({Collision : true});
         })
         
     }

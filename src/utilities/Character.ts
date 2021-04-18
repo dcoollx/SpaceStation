@@ -1,8 +1,7 @@
-/* 
-  an abstraction of the animated sprite, 
-  handles all preload and creation steps
-*/
+import Enitity from './Entity';
 
-export default class Character{
-
+export default class Character extends Enitity{
+    constructor(key:string, sprite:string, frameData:any){
+        super(key,sprite,frameData);
+    }
 }

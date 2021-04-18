@@ -13,5 +13,13 @@ export function getAspectRatio(): aspectRatio{
 
 export default function setTargetSize(ratio: aspectRatio = getAspectRatio()): {height :number, width: number}{
     let decimal = ratio.x/ratio.y;
-    return {height : window.innerWidth/decimal, width:window.innerWidth};
+    let customRatio = ratio === getAspectRatio();
+    let width =  window.innerWidth ;
+    let height = window.innerWidth/decimal;
+    if(height > window.innerHeight){//height is greater than screen
+        height = window.innerHeight
+        width = height * decimal;
+    }
+    return {width, height};
+
 }
