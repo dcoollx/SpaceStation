@@ -25,6 +25,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   devServer :{
+    host:'127.0.0.1',
     contentBase: './dist',
     port : 9000
   },

@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "scenes/levels/test_level/Test_2.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -95,12 +95,15 @@
             "scaleInDock": 1
         },
         "scenes/levels/test_level/Test_2.json": {
-            "scale": 1.7330078125,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 11.540628874112485,
-                "y": 225.90781021075173
+                "x": 1012,
+                "y": 111.5
             }
+        },
+        "scenes/levels/test_level/Test_2.json#Background": {
+            "scaleInDock": 1
         },
         "scenes/levels/test_level/Test_2.json#Backrounds": {
             "scaleInDock": 1,

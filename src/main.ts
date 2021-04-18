@@ -22,7 +22,7 @@ class Game extends Phaser.Game{
             },            
             scale : {
                 autoCenter: Phaser.Scale.CENTER_BOTH,
-                ...setTargetSize(settings.screenRatio),
+                ...setTargetSize(settings.screenRatio)
                 
             },
             backgroundColor: 'blue',
@@ -30,7 +30,11 @@ class Game extends Phaser.Game{
             clearBeforeRender: false,
             scene : [testLevel]
         };
+       
         super(config);
+         if(defaultSettings.debug){
+            Object.assign(window, {game : this,scene: this.scene.getScene('testLevel')})
+        }
     }
     
 }

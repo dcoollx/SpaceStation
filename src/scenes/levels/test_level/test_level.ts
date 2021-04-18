@@ -45,7 +45,7 @@ export default class testLevel extends Level{
         this.player.sprite.scale = 2;
         this.player.sprite.body.setMaxSpeed(200);
         this.cameras.main.startFollow(this.player.sprite);
-        this.cameras.main.setZoom(4,4)
+        this.cameras.main.setZoom(2)
         this.player.play('idle');
         this.map.setCollisionFromCollisionGroup(true, false, this.map.getLayer('Floor_and_walls').tilemapLayer)
         this.physics.add.collider(this.player.sprite, this.map.getLayer('Floor_and_walls').tilemapLayer);
