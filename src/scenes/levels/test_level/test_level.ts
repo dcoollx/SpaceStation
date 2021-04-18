@@ -1,8 +1,8 @@
 import Level from '../../../utilities/Level';
 import test_level from './Test_2.json';
-import marine from '../../assets/images/space-marine-idle.png';
-import marine_run from '../../../assets/images/space-marine-run.png';
-import space from '../../../assets/images/1024x1024 Blue Nebula 1.png';
+import marine from '../../../assets/space-marine-idle.png';// 'src\assets\space-marine-idle.png'
+import marine_run from '../../../assets/space-marine-run.png';
+import space from '../../../assets/1024x1024 Blue Nebula 1.png';
 import Character from '../../../utilities/Character';
 export default class testLevel extends Level{
     player:Character;

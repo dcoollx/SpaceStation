@@ -6,7 +6,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test:/\.(png|jpg|jpeg|gif)$/i,
+        test:/\.(png|jpg|jpeg|gif|mp3|wav)$/i,
         type: "asset/resource",
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    assetModuleFilename:"images/[hash][ext][query]",
+    assetModuleFilename:"assets/[hash][ext][query]",
     path: path.resolve(__dirname, 'dist'),
   },
 };
