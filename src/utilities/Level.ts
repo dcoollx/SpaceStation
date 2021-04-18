@@ -1,8 +1,8 @@
 /// <reference path="../custom.d.ts"/>
 import { Path } from 'typescript';
-import background from '../images/Mech_background_tileset_128x128.png';
-import Ground_and_walls from '../images/mech_tileset_16x16.png'
-import Shadows from '../images/shadow_Tileset_16x16.png'
+import background from '../assets/images/Mech_background_tileset_128x128.png';
+import Ground_and_walls from '../assets/images/mech_tileset_16x16.png'
+import Shadows from '../assets/images/shadow_Tileset_16x16.png'
 //import test_map from '../../build/assets/testLevel.json';
 
 export default class Level extends Phaser.Scene{
