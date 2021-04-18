@@ -9,7 +9,6 @@ export default class Level extends Phaser.Scene{
     private mapName:string;
     private level: any;
     map:Phaser.Tilemaps.Tilemap;
-    shadowLayer: Phaser.Tilemaps.TilemapLayer;
     cursors : Phaser.Types.Input.Keyboard.CursorKeys;
     public tileSets: Array<Phaser.Tilemaps.Tileset>
     constructor(level: any, scene_name : string,){
@@ -21,7 +20,7 @@ export default class Level extends Phaser.Scene{
     
     }
     preload(){
-        this.load.image('Backrounds',background);
+        this.load.image('Background',background);
         this.load.image('Shadows', Shadows);
         this.load.image('Ground_and_walls',Ground_and_walls);
         this.load.tilemapTiledJSON(this.mapName, this.level);
@@ -37,8 +36,8 @@ export default class Level extends Phaser.Scene{
              this.map.addTilesetImage(ts.name, ts.name, ts.tilewidth, ts.tileheight, 0,0,ts.gid);
         });
         console.log(this.map);
-        this.level.layers.forEach((layer:any, i:number)=>{
-            this.shadowLayer = this.map.createLayer(layer.name,this.map.tilesets, layer.of).setCollisionByProperty({Collision : true});
+        this.level.layers.forEach((layer:Phaser.Tilemaps.LayerData, i:number)=>{
+         this.map.createLayer(layer.name,this.map.tilesets, layer.x, layer.y);
         })
         
     }

@@ -10,20 +10,22 @@ export default class testLevel extends Level{
     constructor(){
         super(test_level, 'testLevel');
         this.speed = {x:0,y:0};
-        this.player = new Character('marine', marine, {frameHeight:48, frameWidth:48});
+        this.player;
     }
     preload(){
-        super.preload();
-       this.player.preload(this);
-       this.load.spritesheet('marine_run_sprites', marine_run, {frameWidth:48, frameHeight:48})
+        let start = Date.now();
+       super.preload();
+       this.load.spritesheet('marine', marine, {frameWidth:40, frameHeight:48, spacing:8})
+       this.load.spritesheet('marine_run_sprites', marine_run, {frameWidth:40, frameHeight:48, spacing:8})
        this.load.image('background', space);
+       console.log(Date.now() - start, 'load time');
     }
     create(){
         super.create();
-        this.player.create(this);
+        this.player = new Character('marine', this);
         const width = this.scale.width;
         const height = this.scale.height;
-        let background = this.add.image(0.5 * width,0.5* height,'background').setOrigin(0.5).setDisplaySize(this.game.canvas.width, this.game.canvas.width).setScrollFactor(0.2);
+        let background = this.add.image(0.5 * width,0.5* height,'background').setOrigin(0.5).setDisplaySize(this.game.canvas.width, this.game.canvas.width).setScrollFactor(0.2)
         background.depth = -100;
        // this.player = this.physics.add.sprite(200,0,'marine');
         this.player.body.mass =300;
@@ -43,12 +45,11 @@ export default class testLevel extends Level{
         this.player.sprite.scale = 2;
         this.player.sprite.body.setMaxSpeed(200);
         this.cameras.main.startFollow(this.player.sprite);
+        this.cameras.main.setZoom(4,4)
         this.player.play('idle');
         this.map.setCollisionFromCollisionGroup(true, false, this.map.getLayer('Floor_and_walls').tilemapLayer)
         this.physics.add.collider(this.player.sprite, this.map.getLayer('Floor_and_walls').tilemapLayer);
-        console.log(this.physics.getConfig())
-        Object.assign(window,{sh:this.shadowLayer});
-       
+        console.log(this.physics.getConfig())   
 
         
     }
