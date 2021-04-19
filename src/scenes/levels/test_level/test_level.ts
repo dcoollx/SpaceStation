@@ -3,6 +3,7 @@ import test_level from './Test_2.json';
 import marine from '../../../assets/space-marine-idle.png';// 'src\assets\space-marine-idle.png'
 import marine_run from '../../../assets/space-marine-run.png';
 import space from '../../../assets/1024x1024 Blue Nebula 1.png';
+import theme from '../../../assets/theme1.ogg';
 import Character from '../../../utilities/Character';
 export default class testLevel extends Level{
     player:Character;
@@ -18,6 +19,7 @@ export default class testLevel extends Level{
        this.load.spritesheet('marine', marine, {frameWidth:40, frameHeight:48, spacing:8})
        this.load.spritesheet('marine_run_sprites', marine_run, {frameWidth:40, frameHeight:48, spacing:8})
        this.load.image('background', space);
+       this.load.audio('theme',theme); 
        console.log(Date.now() - start, 'load time');
     }
     create(){
@@ -25,7 +27,9 @@ export default class testLevel extends Level{
         this.player = new Character('marine', this);
         const width = this.scale.width;
         const height = this.scale.height;
-        let background = this.add.image(0.5 * width,0.5* height,'background').setOrigin(0.5).setDisplaySize(this.game.canvas.width, this.game.canvas.width).setScrollFactor(0.2)
+        const music = this.sound.play('theme');
+        this.sound.volume = 0.5;
+        let background = this.add.image(0.5 * width,0.5* height,'background').setOrigin(0.5).setDisplaySize(this.game.canvas.width, this.game.canvas.width).setScrollFactor(0.2);
         background.depth = -100;
        // this.player = this.physics.add.sprite(200,0,'marine');
         this.player.body.mass =300;
