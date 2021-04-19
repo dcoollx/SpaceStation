@@ -6,7 +6,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test:/\.(png|jpg|jpeg|gif|mp3|wav)$/i,
+        test:/\.(png|jpg|jpeg|gif|mp3|wav|ogg)$/i,
         type: "asset/resource",
       },
       {
