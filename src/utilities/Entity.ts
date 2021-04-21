@@ -2,6 +2,7 @@
   an abstraction of the animated sprite, 
   handles all preload and creation steps
 */
+import StateMachine from './StateMachine';
 export interface frameData{
   frameWidth:number, frameHeight:number
 }
@@ -9,9 +10,11 @@ export default abstract class Enitity{
   sprite:Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   key:string;
   body: Phaser.Physics.Arcade.Body | Phaser.Physics.Arcade.StaticBody;
+  stateMachine:StateMachine
   constructor(key:string){
     this.key = key;
     this.sprite;
+    this.stateMachine = new StateMachine('idle');
   }
   abstract create(scene : Phaser.Scene, pos?:{x:number,y:number}):Phaser.Types.Physics.Arcade.SpriteWithDynamicBody
    
@@ -19,7 +22,7 @@ export default abstract class Enitity{
     if(animation instanceof Array)
       animation.forEach(a=>this.sprite.anims.create(a));
     else
-      this.sprite.anims.create(animation)
+      return this.sprite.anims.create(animation)
   }
   play(key:string, ignore?:boolean){
     this.sprite.play(key, ignore || false);

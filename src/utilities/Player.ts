@@ -4,39 +4,50 @@ export default class Player extends Character{
     private MAX_SPEED:number;
     public Acceleration: number;
     private cursors:Phaser.Types.Input.Keyboard.CursorKeys
-    public jumpPower: number
+    public jumpPower: number;
+
     constructor(key:string, scene: Phaser.Scene, controls: Phaser.Types.Input.Keyboard.CursorKeys){
         super(key, scene);
         this.cursors = controls;
         this.Acceleration = 20;
         this.jumpPower = -400;
         this.sprite.body.setMaxVelocityX(200);       
-        this.sprite.body.setMass(300)
+        this.sprite.body.setMass(300);
+        this.stateMachine.addState('run', this.stateMachine.root, true);
         
     }
     setAcceleration(newAccel:number):void{
 
     }
     registerControls():void{
+        this.play(this.stateMachine.currentState.name);
+        let input='idle';
         if (this.cursors.left.isDown) {
             this.sprite.body.velocity.x -=this.Acceleration;
-            this.play('run', true);
+            input = 'run';
             this.sprite.setFlipX(true);
+            
         }
 
-        else if (this.cursors.right.isDown) {
+        if (this.cursors.right.isDown) {
             this.sprite.body.velocity.x +=this.Acceleration;
-            this.play('run', true);
+            input = 'run';
             this.sprite.setFlipX(false);
-        }
-        else {
-          this.play('idle', true);
-          this.sprite.body.setVelocityX(0);
+            console.log(this.sprite.body.velocity.x)
+
+        }if (this.cursors.up.isDown) {
+            this.sprite.body.velocity.y = this.jumpPower;
+            input = 'jump';
 
         }
-        if (this.cursors.up.isDown && this.sprite.body.onFloor()) {
-            this.sprite.body.velocity.y = this.jumpPower;
-        }
+
+        console.log( this.stateMachine.run(input));
+       
+        
+
+        
+
+       
     }
     
 }
