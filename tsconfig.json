@@ -8,7 +8,7 @@
     "allowJs": true,
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
     
   },
   "typeRoots": [

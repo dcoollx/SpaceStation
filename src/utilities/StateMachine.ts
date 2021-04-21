@@ -84,6 +84,6 @@ class State{
         this.actions[tran.name] = tran;
     }
     getByAction(action:string):State{
-        return 
+        return this.actions[action];
     }
 }
