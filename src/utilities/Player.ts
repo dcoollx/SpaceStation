@@ -1,4 +1,5 @@
 import Character from './Character';
+import StateMachine, {State} from './StateMachine';
 
 export default class Player extends Character{
     private MAX_SPEED:number;
@@ -13,14 +14,16 @@ export default class Player extends Character{
         this.jumpPower = -400;
         this.sprite.body.setMaxVelocityX(200);       
         this.sprite.body.setMass(300);
-        this.stateMachine.addState('run', this.stateMachine.root, true);
+        
         
     }
     setAcceleration(newAccel:number):void{
 
     }
     registerControls():void{
-        this.play(this.stateMachine.currentState.name);
+        //let charState = this.stateMachine.currentState.name
+     
+
         let input='idle';
         if (this.cursors.left.isDown) {
             this.sprite.body.velocity.x -=this.Acceleration;
@@ -33,7 +36,6 @@ export default class Player extends Character{
             this.sprite.body.velocity.x +=this.Acceleration;
             input = 'run';
             this.sprite.setFlipX(false);
-            console.log(this.sprite.body.velocity.x)
 
         }if (this.cursors.up.isDown) {
             this.sprite.body.velocity.y = this.jumpPower;
@@ -41,7 +43,7 @@ export default class Player extends Character{
 
         }
 
-        console.log( this.stateMachine.run(input));
+        //this.stateMachine.run(input);
        
         
 

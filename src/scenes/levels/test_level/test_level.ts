@@ -6,6 +6,7 @@ import marine_jump from '../../../assets/space-marine-jump.png';
 import space from '../../../assets/1024x1024 Blue Nebula 1.png';
 import theme from '../../../assets/theme1.ogg';
 import Player from '../../../utilities/Player';
+import {testMachine} from '../../../utilities/StateMachine';
 export default class testLevel extends Level {
     player: Player;
     speed: { x: number, y: number };
@@ -76,6 +77,7 @@ export default class testLevel extends Level {
         const cam = this.cameras.main;
         const SPEED = 200;
         this.player.registerControls();
+        testMachine.step();
 
        
     }
