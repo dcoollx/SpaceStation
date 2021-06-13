@@ -38,8 +38,7 @@ export class State{
     stateMachine : StateMachine
     name:string;
     nodes:string[];
-    constructor(name:string,otherStates
-        :string[], enter?:(...args: any[]) => void,execute?:(...args: any[]) => void, exit?:(...args: any[]) => void){
+    constructor(name:string, otherStates:string[], enter?:(...args: any[]) => void,execute?:(...args: any[]) => void, exit?:(...args: any[]) => void){
         this.name = name;
         this.nodes = otherStates;
         this.stateMachine = null;
