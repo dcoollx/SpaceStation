@@ -1,81 +1,73 @@
-export default class StateMachine{
-    state:string;
-    rootState:string;
-    allStates:stateMap
-    stateArgs: any[]
-    constructor(root: string, allStates: stateMap, args:any=[]){
-        this.state = root;
-        this.rootState = root;
-        this.allStates = allStates;
-        this.stateArgs = args
-        this.bind();
-        this.allStates[this.state].enter(...this.stateArgs);
-    }
-    bind(){
-        for(let state in this.allStates){
-            this.allStates[state].stateMachine = this;
-        }
-    }
-    transistion(nextState:string, arg?:any[]){
-        if(this.state === nextState)
-            return; // dont enter a state you are already in.
-        if(this.allStates[this.state].nodes.includes(nextState)){
-            this.allStates[this.state].exit(this.stateArgs)
-            this.state = nextState;
-            this.allStates[this.state].enter(this.stateArgs)
-        }
-    }
-    step(args?:any){
-        this.allStates[this.state].execute(this.stateArgs);
-    }
+interface iEvent{
+    name : string,
+    from : string | Array<string>
+    to : string | Array<string>
+    conditional? : Function
 }
 
-interface stateMap{
-    [name:string]:State
+
+interface stateSettings {
+    initial:string,
+    events : Array<iEvent>
 }
 
-export class State{
-    stateMachine : StateMachine
+
+
+class event{
     name:string;
-    nodes:string[];
-    constructor(name:string, otherStates:string[], enter?:(...args: any[]) => void,execute?:(...args: any[]) => void, exit?:(...args: any[]) => void){
-        this.name = name;
-        this.nodes = otherStates;
-        this.stateMachine = null;
-        if(enter)
-            this.enter = enter;
-        if(exit)
-            this.exit = exit;
-        if(execute)
-            this.execute = execute;
+    condition : Function;
+    to: string;
+    from: string
+    constructor(options : any){
+        this.name = options.name;
+        this.to = options.to,
+        this.from = options.from;
     }
-    enter(...args:any[]){
-        throw new Error('You must override this function')
+    when(expression : Function): event{
+        this.condition = expression;
+        return this;
     }
-    execute(...args:any){throw new Error('You must override this function')}
-    exit(...args:any){throw new Error('You must override this function')}
+    on(event:string): event{
+        //todo check if event is in list
+
+        return this;
+        
+    }
+
 }
 
+export default class StateMachine{
 
-////test machine
-function check(args:any){
-    args.temp++
-    if(args.temp > 100){
-        this.stateMachine.transistion('gas', args.temp);
+    events : Array<event>
+    currentState : string;
+    constructor(settings: stateSettings){
+        this.currentState = settings.initial;
+        this.events = settings.events.map(e =>{
+            return new event(e);
+        });
     }
-    if(args.temp < 100){
-        this.stateMachine.transistion('liquid', args.temp);
+   
+    private transition(to : string ){
+
+        (to as unknown as event) = this.getEvent(to);
+        if(!to){
+            throw new Error('to event not found');
+        }
+        //check the conditional
+        if((to as unknown as event).condition()){
+        //check that this state can move to/from current state
+            if(!(to as unknown as event).from.includes(this.currentState)){
+                //cant move to this state
+                return;
+            }else{
+                //dispatch event
+            }
+        }
     }
-    
+    public getEvent(name:string):event | null{
+        return this.events.find(e => event.name === name)
+    }
 }
-
-const atlas: stateMap = {
-  'liquid': new State('liquid',['gas','solid'], (temp:number)=>console.log(`cup  ${(temp > 10) ? 'melted' : 'condensed'} to a liquid`),check, (temp:number)=>temp >= 100 ? console.log('cup started to boil') : console.log('cup is really cold')),
-  'solid': new State('solid', ['liquid'],(temp:number)=>console.log('cup froze to ice'),check,(temp:number)=>console.log('cup started to melt')),
-  'gas': new State('gas', ['liquid'],(temp:number)=>console.log('cup evaporated to mist'),(args:any)=>args.temp++, (temp:number)=>console.log('cup started to condense')),
-}
-
-let testMachine = new StateMachine('solid',atlas,{temp:0});
-Object.assign(window,{test:testMachine})
-
-export {testMachine}
+let temp = 50;
+const test = new StateMachine({initial:'liquid', events : [{name:'freeze',to:'ice',from:'liquid'}, {name:'boil',to:'steam',from:'liquid'}]});
+test.getEvent('freeze').when((temp : number)=>temp < 0)
