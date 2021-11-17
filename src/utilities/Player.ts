@@ -32,7 +32,7 @@ export default class Player extends Character{
         this.sprite.body.setMass(300);
         this.sm.fromAny(Player_States).to(Player_States.idle);
         this.sm.fromAny(Player_States).to(Player_States.jump);
-        this.sm.from(Player_States.idle, Player_States.run).to(Player_States.run);
+        this.sm.fromAny(Player_States).to(Player_States.run);
         this.sm.fromAny(Player_States).to(Player_States.falling);
         this.registerEvents();
         
@@ -42,12 +42,30 @@ export default class Player extends Character{
 
     }
     registerEvents(){
-        let sm = this.sm; // short cut to statemachine
+     let sm = this.sm; // short cut to statemachine
+        sm.onInvalidTransition((from, to)=>{
+            return from === to
+        })
+       
         sm.onEnter(Player_States.jump,(from, event)=>{
-          if(this.sprite.body.touching.down){
+          if(!this.sprite.body.blocked.down){ // no double jump
             return false
           }else
             return true;
+        });
+        sm.onEnter(Player_States.run,(from: Player_States, e)=>{
+            if(from === Player_States.falling || from === Player_States.jump){
+                if(this.sprite.body.blocked.down){
+                    return true
+                }else{
+                    //not going to change to running but still move left/right
+                    this.sprite.setFlipX(e);
+                    this.sprite.body.velocity.x += !e ? this.Acceleration : -1* this.Acceleration;
+                    return false;
+                }
+            }
+
+            return this.sprite.body.blocked.down
         });
         sm.on(Player_States.falling,()=>{
             if(this.sprite.body.touching.down){
@@ -66,24 +84,40 @@ export default class Player extends Character{
         });
     }
     update():void{
+        let input =false
         //let charState = this.stateMachine.currentState.name
+
+        if(this.sm.currentState == Player_States.jump){
+            if(this.sprite.body.velocity.y > 0){
+                this.sm.go(Player_States.falling);
+            }
+        }
+        if(this.sm.currentState == Player_States.falling){
+            if(this.sprite.body.blocked.down){
+                this.sm.go(Player_States.idle);
+            }
+        }
      
 
-        let input='idle';
         if (this.cursors.left.isDown) {
-            //this.sm.step('left')
-            this.sprite.body.velocity.x -=this.Acceleration;
-            input = 'run';
-            this.sprite.setFlipX(true);
+            input = true;
+            this.sm.go(Player_States.run, true)
             
         }
 
         if(this.cursors.right.isDown) {
+            input = true;
             this.sm.go(Player_States.run, false)
 
         }if (this.cursors.up.isDown) {
+            input = true;
             if(this.sm.currentState !== Player_States.jump)
                 this.sm.go(Player_States.jump);
+
+        }
+        if(!input && this.sprite.body.velocity.y === 0){
+            this.sm.go(Player_States.idle);
+            this.sprite.body.velocity.x =0;
 
         }
 
