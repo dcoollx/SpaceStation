@@ -76,9 +76,7 @@ export default class testLevel extends Level {
     update(time: any, delta: any) {
         const cam = this.cameras.main;
         const SPEED = 200;
-        this.player.registerControls();
-        testMachine.step();
-
+        this.player.update()
        
     }
 }
