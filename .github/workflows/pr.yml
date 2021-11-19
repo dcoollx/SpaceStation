@@ -1,0 +1,28 @@
+name: Pre-Pull Request Checks
+on: 
+  pull_request:
+    branches: 
+      - main
+jobs:
+  build:
+    name: build and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run build
+      - run: npm t
+  version:
+    runs-on: ubuntu-latest
+    name: update version
+    if: github.event.type == 'opened'
+    steps:
+      - uses: action/checkout@v2
+      - uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          minor-wording: "add,Adds,new,added"
+          major-wording: "MAJOR,cut-major,break,broke, "
+          patch-wording: "patch,fixes"
+          default: patch 
