@@ -35,6 +35,33 @@ export default class Player extends Character{
         this.sm.fromAny(Player_States).to(Player_States.run);
         this.sm.fromAny(Player_States).to(Player_States.falling);
         this.registerEvents();
+        //animations
+        this.addAnimation({
+            key: 'idle',
+            frames: this.sprite.scene.anims.generateFrameNames('marine'),
+            frameRate: 4,
+            repeat: -1
+        });
+        let jump = this.addAnimation({
+            key: 'jump',
+            frames: this.sprite.scene.anims.generateFrameNames('marine_jump_sprite',{ frames: [0,1,2] }),
+            frameRate: 8,
+            repeat: 0
+        });
+        this.addAnimation({
+            key: 'fall',
+            frames: this.sprite.scene.anims.generateFrameNames('marine_jump_sprite', { frames: [2,3, 4,] }),
+            frameRate: 8,
+            repeat: 0
+        });
+        this.addAnimation({
+            key: 'run',
+            frames: this.sprite.scene.anims.generateFrameNames('marine_run_sprites', { frames: [0, 1, 2, 3, 5, 6, 7, 8] }),
+            frameRate: 8,
+            repeat: 0
+        });
+
+        this.sprite.scale = 2;
         
     }
 
@@ -70,16 +97,23 @@ export default class Player extends Character{
         sm.on(Player_States.falling,()=>{
             if(this.sprite.body.touching.down){
                 sm.go(Player_States.idle);
+                return;
             }
+            this.play('fall', true);
+        });
+        sm.on(Player_States.idle,()=>{
+            this.play('idle', true);
         });
         sm.on(Player_States.jump,()=>{
             this.sprite.body.velocity.y = this.jumpPower;
+            this.play('jump')
             //sm.go(Player_States.falling);
             //play jump sound
 
         });
         sm.on(Player_States.run,(from: any, e: any)=>{
             this.sprite.setFlipX(e);
+            this.play('run',true);
             this.sprite.body.velocity.x += !e ? this.Acceleration : -1* this.Acceleration;
         });
     }
