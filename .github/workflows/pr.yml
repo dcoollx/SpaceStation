@@ -1,7 +1,7 @@
 name: Pre-Pull Request Checks
-on: 
+on:
   pull_request:
-    branches: 
+    branches:
       - main
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
   version:
     runs-on: ubuntu-latest
     name: update version
-    if: github.event.type == 'opened'
+    if: github.event.action == 'opened'
     steps:
       - uses: action/checkout@v2
       - uses: phips28/gh-action-bump-version@master
@@ -25,4 +25,4 @@ jobs:
           minor-wording: "add,Adds,new,added"
           major-wording: "MAJOR,cut-major,break,broke, "
           patch-wording: "patch,fixes"
-          default: patch 
+          default: patch
