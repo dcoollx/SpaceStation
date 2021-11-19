@@ -38,32 +38,7 @@ export default class testLevel extends Level {
         let background = this.add.image(0.5 * width, 0.5 * height, 'background').setOrigin(0.5).setDisplaySize(this.game.canvas.width, this.game.canvas.width).setScrollFactor(0.2);
         background.depth = -100;
         // this.player = this.physics.add.sprite(200,0,'marine');
-        this.player.addAnimation({
-            key: 'idle',
-            frames: this.anims.generateFrameNames('marine'),
-            frameRate: 4,
-            repeat: -1
-        });
-        let jump = this.player.addAnimation({
-            key: 'jump',
-            frames: this.anims.generateFrameNames('marine_jump_sprite',{ frames: [0,1,2] }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.player.addAnimation({
-            key: 'fall',
-            frames: this.anims.generateFrameNames('marine_jump_sprite', { frames: [3, 4, 5] }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.player.addAnimation({
-            key: 'run',
-            frames: this.anims.generateFrameNames('marine_run_sprites', { frames: [0, 1, 2, 3, 5, 6, 7, 8] }),
-            frameRate: 8,
-            repeat: 0
-        });
-
-        this.player.sprite.scale = 2;
+       
         this.cameras.main.startFollow(this.player.sprite);
         this.cameras.main.setZoom(2)
         //this.cameras.main.followOffset.set(-50,0);
