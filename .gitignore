@@ -1,6 +1,6 @@
 node_modules
-dist
 dist/bundle.js
+dist/assets/
 !*/dist/index.html
 src/SpaceStation.tiled-session
 unused_assets
