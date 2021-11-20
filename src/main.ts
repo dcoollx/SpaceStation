@@ -9,7 +9,7 @@ const defaultSettings = {
     screenRatio : {x:21,y:9}
 }
 let settings = localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : defaultSettings
-class Game extends Phaser.Game{
+export default class Game extends Phaser.Game{
     constructor(){
         let config ={
             type: Phaser.AUTO,
