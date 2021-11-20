@@ -17,7 +17,7 @@ jobs:
     name: update version
     if: github.event.action == 'opened'
     steps:
-      - uses: action/checkout@v2
+      - uses: actions/checkout@v2
       - uses: phips28/gh-action-bump-version@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
