@@ -6,7 +6,7 @@ import testLevel from './scenes/levels/test_level/test_level';
 
 const defaultSettings = {
     debug:true,
-    screenRatio : {x:21,y:9}
+    screenRatio : {x:4,y:3}
 }
 let settings = localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : defaultSettings
 export default class Game extends Phaser.Game{
@@ -28,7 +28,7 @@ export default class Game extends Phaser.Game{
             backgroundColor: 'blue',
             transparent: true,
             clearBeforeRender: false,
-            scene : [testLevel]
+            scene : [Menu, testLevel]
         };
        
         super(config);

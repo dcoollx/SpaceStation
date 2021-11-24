@@ -8,6 +8,7 @@ import Shadows from '../assets/shadow_Tileset_16x16.png'
 export default class Level extends Phaser.Scene{
     private mapName:string;
     private level: any;
+    public paused: boolean;
     map:Phaser.Tilemaps.Tilemap;
     cursors : Phaser.Types.Input.Keyboard.CursorKeys;
     public tileSets: Array<Phaser.Tilemaps.Tileset>
@@ -17,6 +18,7 @@ export default class Level extends Phaser.Scene{
         this.level = level;
         this.tileSets = [];
         this.map;
+        this.paused = false;
     
     }
     preload(){
@@ -38,7 +40,14 @@ export default class Level extends Phaser.Scene{
         console.log(this.map);
         this.level.layers.forEach((layer:Phaser.Tilemaps.LayerData, i:number)=>{
          this.map.createLayer(layer.name,this.map.tilesets, layer.x, layer.y);
-        })
-        
+        });
+
+       document.addEventListener('keydown',(e)=>{
+           if(e.key === 'Escape'){
+               this.paused ? this.scene.pause() : null;
+               this.paused = !this.paused;
+               this.scene.transition({ target : 'pause', duration: 2, sleep: true, moveAbove:true})
+           }
+       });
     }
 }
