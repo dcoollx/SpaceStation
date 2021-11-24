@@ -4,3 +4,4 @@ dist/assets/
 !*/dist/index.html
 src/SpaceStation.tiled-session
 unused_assets
+coverage/**/*
