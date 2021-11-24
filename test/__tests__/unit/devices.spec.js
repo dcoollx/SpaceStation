@@ -1,4 +1,4 @@
-import  setTargetSize from '../src/utilities/device';
+import  setTargetSize from '../../../src/utilities/device';
 
 describe('devices handles screen and device interface',()=>{
     it('returns the correct height and width',()=>{

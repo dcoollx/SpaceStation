@@ -82,7 +82,9 @@ export default {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    ".+\.png$": "testMock.js"
+    ".+\.png$": "<rootDir>/test/__mocks__/imageMock.ts",
+    ".+\.mp3$": "<rootDir>/test/__mocks__/imageMock.ts",
+    ".+\.ogg$": "<rootDir>/test/__mocks__/imageMock.ts"
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -130,7 +132,7 @@ export default {
   setupFiles: ["jest-canvas-mock"],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ["<rootDir>/test/setup.ts"],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
