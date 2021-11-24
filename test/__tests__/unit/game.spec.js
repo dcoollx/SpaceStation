@@ -3,9 +3,11 @@
 
 
 describe('Game starts up',()=>{
-    it('starts',()=>{
-        expect(document.querySelector('canvas')).toBeTruthy();
-        //expect(window.game.isRunning).toBeTruthy();
+    it.only('starts',()=>{
+        const canvas = document.querySelector('canvas');
+        expect(canvas).toBeTruthy();
+        canvas.focus()
+        expect(Game.isBooted).toBeTruthy();
     });
     it('is the right scale',()=>{
         expect(Game.config.width).toBe(1024);
