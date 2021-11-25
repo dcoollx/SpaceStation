@@ -5,7 +5,7 @@ import Ground_and_walls from '../assets/mech_tileset_16x16.png'
 import Shadows from '../assets/shadow_Tileset_16x16.png'
 //import test_map from '../../build/assets/testLevel.json';
 
-export default class Level extends Phaser.Scene{
+export default abstract class Level extends Phaser.Scene{
     private mapName:string;
     private level: any;
     public paused: boolean;
