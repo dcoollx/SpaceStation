@@ -13,8 +13,8 @@
   "scripts": {
     "test": "jest",
     "run": "webpack serve --open ",
-    "start": "npm run run",
-    "prestart": "npm run build",
+    "start": "yarn run run",
+    "prestart": "yarn run build",
     "compile": "tsc --watch",
     "prebuild": "tsc",
     "build": "webpack",

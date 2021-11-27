@@ -3,6 +3,7 @@ import Menu from './scenes/menu/Menu';
 import setTargetSize from './utilities/device';
 import testLevel from './scenes/levels/test_level/test_level';
 import Game from './utilities/Game';
+import Pause from './scenes/menu/Pause';
 
 const defaultSettings = {
     debug:true,
@@ -26,7 +27,7 @@ const config: Phaser.Types.Core.GameConfig ={
     backgroundColor: 'blue',
     transparent: true,
     clearBeforeRender: false,
-    scene : [testLevel]
+    scene : [Menu, testLevel, Pause]
 };
 
 

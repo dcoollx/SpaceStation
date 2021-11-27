@@ -39,14 +39,14 @@ export default abstract class Level extends Phaser.Scene{
         });
         console.log(this.map);
         this.level.layers.forEach((layer:Phaser.Tilemaps.LayerData, i:number)=>{
-         this.map.createLayer(layer.name,this.map.tilesets, layer.x, layer.y);
+            this.map.createLayer(layer.name,this.map.tilesets, layer.x, layer.y);
         });
 
        document.addEventListener('keydown',(e)=>{
            if(e.key === 'Escape'){
-               this.paused ? this.scene.pause() : null;
+               this.paused ? this.scene.pause() : this.scene.resume();
                this.paused = !this.paused;
-               this.scene.transition({ target : 'pause', duration: 2, sleep: true, moveAbove:true})
+               this.scene.transition({ target : 'pause_menu', duration: 2, sleep: true, moveAbove:true});
            }
        });
     }
