@@ -1,3 +1,7 @@
+/* 
+    The main menu
+    will have options to exit game, adjust settings, and start
+*/
 import Phaser from 'phaser';
 import theme from  '../../assets/Space_Station_Title_Screen.mp3';
 import twinkle from '../../assets/twinkle.gif';
@@ -25,7 +29,7 @@ export default class Menu extends Phaser.Scene{
         title.text = 'Space Station'
 
         //controls
-        const start = this.add.text(this.game.scale.width/2,title.y + 100,'Start ');
+        const start = this.add.text(this.game.scale.width/2,title.y + 100,'> Start');
         start.setInteractive();
         this.options.push(start);
         this.selection = this.options[this.selectionIndex];
@@ -41,27 +45,33 @@ export default class Menu extends Phaser.Scene{
 
         this.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,(e:any)=>{
             console.log('keyboard event', e.key)
+            if(e.key === 'ArrowUp' || e.key == 'ArrowDown'){
+                this.options.forEach(o=>{
+                    o.text = o.text.replace(/> /g,'');
+                });
+            }
             if(e.key === 'ArrowUp'){
                 this.selectionIndex--;
                 if(this.selectionIndex < 0)
                     this.selectionIndex = 0;
-                this.selection.text.replace('>', '');
+                
 
             }
             if(e.key == 'ArrowDown'){
                 this.selectionIndex++;
                 if(this.selectionIndex > this.options.length -1)
                     this.selectionIndex = this.options.length -1;
-                this.selection.text.replace('>', '');
             }
+            if(e.key == 'Enter'){
+                this.options[this.selectionIndex].emit('pointerup')
+            }
+            this.selection = this.options[this.selectionIndex];
+            this.selection.text = '> ' + this.selection.text;
         });
     }
     update(){
-        this.selection = this.options[this.selectionIndex];
-        if(this.selection.text.includes('>')){
-            this.selection.text.replace('>', '');
-        }else{
-            this.selection.text = '> ' + this.selection.text;
-        }
+       
+        
+        
     }
 }
