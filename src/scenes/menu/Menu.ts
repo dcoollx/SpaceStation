@@ -44,18 +44,16 @@ export default class Menu extends Phaser.Scene{
         });
 
         this.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,(e:any)=>{
-            console.log('keyboard event', e.key)
             if(e.key === 'ArrowUp' || e.key == 'ArrowDown'){
                 this.options.forEach(o=>{
                     o.text = o.text.replace(/> /g,'');
                 });
+            
             }
             if(e.key === 'ArrowUp'){
                 this.selectionIndex--;
                 if(this.selectionIndex < 0)
                     this.selectionIndex = 0;
-                
-
             }
             if(e.key == 'ArrowDown'){
                 this.selectionIndex++;
@@ -66,7 +64,11 @@ export default class Menu extends Phaser.Scene{
                 this.options[this.selectionIndex].emit('pointerup')
             }
             this.selection = this.options[this.selectionIndex];
-            this.selection.text = '> ' + this.selection.text;
+
+            if(e.key === 'ArrowUp' || e.key == 'ArrowDown'){
+                this.selection.text = '> ' + this.selection.text;
+            }
+           
         });
     }
     update(){
