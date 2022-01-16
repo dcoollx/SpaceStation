@@ -9,7 +9,8 @@ enum Player_States{
             run,
             falling,
             climb,
-            jump
+            jump,
+            death
         }
 
 export default class Player extends Character{
@@ -30,6 +31,7 @@ export default class Player extends Character{
         this.jumpPower = -400;
         this.sprite.body.setMaxVelocityX(200);       
         this.sprite.body.setMass(300);
+        this.sm.fromAny(Player_States).to(Player_States.death);
         this.sm.fromAny(Player_States).to(Player_States.idle);
         this.sm.fromAny(Player_States).to(Player_States.jump);
         this.sm.fromAny(Player_States).to(Player_States.run);
@@ -163,6 +165,11 @@ export default class Player extends Character{
         
 
        
+    }
+    die(): void {
+        this.sm.go('dead');
+        this.play('die');
+        this.scene
     }
     
 }

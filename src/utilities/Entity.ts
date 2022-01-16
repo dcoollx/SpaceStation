@@ -26,5 +26,10 @@ export default abstract class Enitity{
   play(key:string, ignore?:boolean){
     this.sprite.play(key, ignore || false);
   }
+  abstract die() : void
+    // lose the ability to move
+    //play death animation
+    //remove from the screen
+    //play death sound
 
 }
