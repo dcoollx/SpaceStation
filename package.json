@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "g": "^2.0.1",
-    "phaser": "^3.54.0",
+    "phaser": "^3.60.0",
     "typestate": "^1.0.6",
     "webpack-cli": "^4.6.0",
     "yarn": "^1.22.17"
@@ -29,8 +29,10 @@
     "@types/babel__traverse": "^7.14.2",
     "@types/jest": "^27.0.3",
     "babel-jest": "^27.3.1",
+    "copy-webpack-plugin": "^11.0.0",
     "copyfiles": "^2.4.1",
     "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
     "jest": "^27.3.1",
     "jest-canvas-mock": "^2.3.1",
     "ts-loader": "^8.1.0",

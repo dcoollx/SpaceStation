@@ -1,28 +1,25 @@
-import Level from '../../../utilities/Level';
-import test_level from './Test_2.json';
-import marine from '../../../assets/space-marine-idle.png';// 'src\assets\space-marine-idle.png'
-import marine_run from '../../../assets/space-marine-run.png';
-import marine_jump from '../../../assets/space-marine-jump.png';
-import space from '../../../assets/1024x1024 Blue Nebula 1.png';
-import theme from  '../../../assets/Space_Station_Title_Screen.mp3'; //'../../../assets/theme1.ogg';
-import Player from '../../../utilities/Player';
-export default class testLevel extends Level {
+import Level from '../../utilities/Level';
+import testLevelData from '../../data/TestLevel.json';
+import Player from '../../entities/Player';
+
+const levelKey = 'testLevel' as const
+export class TestLevel extends Level {
     player: Player;
     speed: { x: number, y: number };
-    constructor() {
-        super(test_level, 'testLevel');
+    constructor(){
+        super(testLevelData, levelKey);
         this.speed = { x: 0, y: 0 };
         this.player;
     }
     preload() {
-        let start = Date.now();
+        console.time('loading')
         super.preload();
-        this.load.spritesheet('marine', marine, { frameWidth: 40, frameHeight: 48, spacing: 8 })
-        this.load.spritesheet('marine_run_sprites', marine_run, { frameWidth: 40, frameHeight: 48, spacing: 8 });
-        this.load.spritesheet('marine_jump_sprite', marine_jump, { frameWidth: 36, frameHeight: 33 });
-        this.load.image('background', space);
-        this.load.audio('theme', theme);
-        console.log(Date.now() - start, 'load time');
+        this.load.spritesheet('marine', 'assets/space-marine-idle.png', { frameWidth: 40, frameHeight: 48, spacing: 8 })
+        this.load.spritesheet('marine_run_sprites','assets/space-marine-run.png', { frameWidth: 40, frameHeight: 48, spacing: 8 });
+        this.load.spritesheet('marine_jump_sprite', 'assets/space-marine-jump.png', { frameWidth: 36, frameHeight: 33 });
+        this.load.image('background', 'assets/1024x1024 Blue Nebula 1.png');
+        this.load.audio('theme', 'assets/Space_Station_Title_Screen.mp3');
+        console.timeEnd('loading')
     }
     create() {
         this.physics.world.setBounds(0,0,(150*16), 16*25);

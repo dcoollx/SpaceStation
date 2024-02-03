@@ -2,7 +2,7 @@
 import { Path } from 'typescript';
 import background from '../assets/Mech_background_tileset_128x128.png';
 import Ground_and_walls from '../assets/mech_tileset_16x16.png'
-import Shadows from '../assets/shadow_Tileset_16x16.png'
+import ShadowsImg from '../assets/shadow_Tileset_16x16.png'
 //import test_map from '../../build/assets/testLevel.json';
 
 export default abstract class Level extends Phaser.Scene{
@@ -16,12 +16,11 @@ export default abstract class Level extends Phaser.Scene{
         this.mapName = scene_name + '_map';
         this.level = level;
         this.tileSets = [];
-        this.map;
     
     }
     preload(){
         this.load.image('Background',background);
-        this.load.image('Shadows', Shadows);
+        this.load.image('Shadows', ShadowsImg);
         this.load.image('Ground_and_walls',Ground_and_walls);
         this.load.tilemapTiledJSON(this.mapName, this.level);
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -31,14 +30,17 @@ export default abstract class Level extends Phaser.Scene{
     }
     create(){
         this.cameras.main.setBounds(0,0,this.game.scale.width * 3,this.game.scale.height);
-        this.map = this.make.tilemap({key:this.mapName});
-        this.level.tilesets.forEach((ts:any)=>{
-             this.map.addTilesetImage(ts.name, ts.name, ts.tilewidth, ts.tileheight, 0,0,ts.gid);
-        });
-        console.log(this.map);
-        this.level.layers.forEach((layer:Phaser.Tilemaps.LayerData, i:number)=>{
-         this.map.createLayer(layer.name,this.map.tilesets, layer.x, layer.y);
-        })
+        this.map = Phaser.Tilemaps.ParseToTilemap(this, this.mapName)
+        //name: string, firstgid: number, tileWidth?: number, tileHeight?: number, tileMargin?: number, tileSpacing?: number, tileProperties?: object, tileData?: object
+        console.log(this.map)
+        //this.make.tilemap({key:this.mapName});
+        // this.level.tilesets.forEach((ts:any)=>{
+        //      this.map.addTilesetImage(ts.name, ts.name, ts.tilewidth, ts.tileheight, 0,0,ts.gid);
+        // });
+        // console.log(this.map);
+        // this.level.layers.forEach((layer:Phaser.Tilemaps.LayerData, i:number)=>{
+        //  this.map.createLayer(layer.name,this.map.tilesets, layer.x, layer.y);
+        // })
         
     }
 }

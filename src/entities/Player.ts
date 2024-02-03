@@ -11,19 +11,28 @@ enum Player_States{
             climb,
             jump
         }
+type playerStats = {
+    hp: number;
+    mp: number;
+
+}
 
 export default class Player extends Character{
     private MAX_SPEED:number;
     public Acceleration: number;
     private cursors:Phaser.Types.Input.Keyboard.CursorKeys
     public jumpPower: number;
-    private sm : typestate.FiniteStateMachine<any>;
+    private sm : typestate.FiniteStateMachine<Player_States>;
+    public stats: playerStats;
 
    
     constructor(key:string, scene: Phaser.Scene, controls: Phaser.Types.Input.Keyboard.CursorKeys){
         super(key, scene);
 
-        
+        this.stats = {
+            hp: 100,
+            mp: 100,
+        }
         this.sm = new typestate.FiniteStateMachine<Player_States>(Player_States.idle);
         this.cursors = controls;
         this.Acceleration = 20;
@@ -65,9 +74,6 @@ export default class Player extends Character{
         
     }
 
-    setAcceleration(newAccel:number):void{
-
-    }
     registerEvents(){
      let sm = this.sm; // short cut to statemachine
         sm.onInvalidTransition((from, to)=>{
@@ -156,7 +162,6 @@ export default class Player extends Character{
         }
 
         //this.stateMachine.run(input);
-        console.log('current state: ', this.sm.currentState);
        
         
 
