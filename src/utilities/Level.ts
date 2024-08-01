@@ -2,6 +2,7 @@
 
 
 import TiledMap, { TiledLayer } from 'tiled-types'
+import StaticHazard from '../entities/StaticHazard';
 
 export default abstract class Level extends Phaser.Scene{
     private mapName:string;
@@ -47,8 +48,8 @@ export default abstract class Level extends Phaser.Scene{
             this.collisionLayer = this.map.createLayer(layer.name, this.map.tilesets.map(l=>l.name) ).setCollisionByProperty({ isSolid: true});
              
         });
-        this.map.objects.forEach(({name}) => {
-            //this.map.createFromObjects(name,)
+        this.map.objects.forEach(({name }) => {
+            const hazards = this.map.createFromObjects(name, { classType: StaticHazard});
         })
         console.log(this.map.layers);
         this.map.setCollisionFromCollisionGroup(true, false, 'Collision')
