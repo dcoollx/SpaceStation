@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="left-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="7">
+ <editorsettings>
+  <export target="test.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="../assets/Mech_background_tileset_128x128.png" trans="ff00ff" width="128" height="128"/>
+  <wangsets>
+   <wangset name="all" type="mixed" tile="-1">
+    <wangcolor name="ground" color="#ff0000" tile="-1" probability="1"/>
+    <wangtile tileid="0" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="1" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="2" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="3" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="4" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="5" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="6" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="7" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="8" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="9" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="10" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="11" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="12" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="13" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="14" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="15" wangid="1,1,1,1,1,1,1,1"/>
+   </wangset>
+   <wangset name="courners" type="corner" tile="-1">
+    <wangcolor name="all" color="#ff0000" tile="-1" probability="1"/>
+    <wangcolor name="corner" color="#00ff00" tile="-1" probability="1"/>
+    <wangtile tileid="0" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="1" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="2" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="3" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="4" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="5" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="6" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="7" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="8" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="9" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="10" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="11" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="12" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="13" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="14" wangid="0,2,0,2,0,2,0,2"/>
+    <wangtile tileid="15" wangid="0,2,0,2,0,2,0,2"/>
+   </wangset>
+  </wangsets>
+ </tileset>
+ <imagelayer id="2" name="background" visible="0" locked="1" repeaty="1">
+  <image source="../assets/1024x1024 Blue Nebula 1.png" width="1024" height="1024"/>
+ </imagelayer>
+ <layer id="1" name="Tile Layer 1" width="10" height="10">
+  <data encoding="base64">
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAIAAAADAAAABAAAAAEAAAACAAAAAwAAAAQAAAADAAAABAAAAAUAAAAGAAAABwAAAAgAAAAFAAAABgAAAAcAAAAIAAAABwAAAAgAAAAJAAAACgAAAAsAAAAMAAAACQAAAAoAAAALAAAADAAAAAsAAAAMAAAADQAAAA4AAAAPAAAAEAAAAA0AAAAOAAAADwAAABAAAAAPAAAAEAAAAA==
+  </data>
+ </layer>
+ <objectgroup id="4" name="interactions" visible="0">
+  <object id="4" name="start" x="32" y="160" width="32" height="32">
+   <properties>
+    <property name="isSolid" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="5" name="door" x="256" y="160" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="3" name="Collision">
+  <object id="3" name="floor" x="0" y="192" width="320" height="128" visible="0">
+   <properties>
+    <property name="isSolid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="6" name="floor" type="static" x="0" y="192" width="320" height="128">
+   <properties>
+    <property name="isSolid" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,46 +1,59 @@
 /// <reference path="../custom.d.ts"/>
-import { Path } from 'typescript';
-import background from '../assets/Mech_background_tileset_128x128.png';
-import Ground_and_walls from '../assets/mech_tileset_16x16.png'
-import ShadowsImg from '../assets/shadow_Tileset_16x16.png'
-//import test_map from '../../build/assets/testLevel.json';
+
+
+import TiledMap, { TiledLayer } from 'tiled-types'
 
 export default abstract class Level extends Phaser.Scene{
     private mapName:string;
-    private level: any;
+    private level: TiledMap;
+    collisionLayer: Phaser.Tilemaps.TilemapLayer;
     map:Phaser.Tilemaps.Tilemap;
     cursors : Phaser.Types.Input.Keyboard.CursorKeys;
-    public tileSets: Array<Phaser.Tilemaps.Tileset>
+    public tileSets: Array<string>
     constructor(level: any, scene_name : string,){
         super({key:scene_name});
         this.mapName = scene_name + '_map';
         this.level = level;
         this.tileSets = [];
-    
+       
     }
     preload(){
-        this.load.image('Background',background);
-        this.load.image('Shadows', ShadowsImg);
-        this.load.image('Ground_and_walls',Ground_and_walls);
-        this.load.tilemapTiledJSON(this.mapName, this.level);
-        this.cursors = this.input.keyboard.createCursorKeys();
-        //this.load.tilemapTiledJSON(this.mapName,this.level)
-        
+        this.level.tilesets.forEach(({ name, image }) =>{
+            this.load.image(name, encodeURI(image))
+            this.tileSets.push(name);
+        })
 
+        this.level.layers.forEach(({name, type, ...rest })=>{
+            if(type === 'imagelayer'){
+                this.load.image(name, encodeURI((rest as any).image));
+            }
+        })
+       
+        
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.load.tilemapTiledJSON(this.mapName,this.level)
     }
     create(){
+        
+        this.map = this.make.tilemap({ key: this.mapName });
+        this.tileSets.forEach(tileSet=>{
+            this.map.addTilesetImage(tileSet)
+        });
+        
+        this.map.images.forEach(( {x, y, name}) => {
+            this.add.image(x,y,name)
+        })
+        this.map.layers.forEach(layer => {
+            this.collisionLayer = this.map.createLayer(layer.name, this.map.tilesets.map(l=>l.name) ).setCollisionByProperty({ isSolid: true});
+             
+        });
+        this.map.objects.forEach(({name}) => {
+            //this.map.createFromObjects(name,)
+        })
+        console.log(this.map.layers);
+        this.map.setCollisionFromCollisionGroup(true, false, 'Collision')
         this.cameras.main.setBounds(0,0,this.game.scale.width * 3,this.game.scale.height);
-        this.map = Phaser.Tilemaps.ParseToTilemap(this, this.mapName)
-        //name: string, firstgid: number, tileWidth?: number, tileHeight?: number, tileMargin?: number, tileSpacing?: number, tileProperties?: object, tileData?: object
         console.log(this.map)
-        //this.make.tilemap({key:this.mapName});
-        // this.level.tilesets.forEach((ts:any)=>{
-        //      this.map.addTilesetImage(ts.name, ts.name, ts.tilewidth, ts.tileheight, 0,0,ts.gid);
-        // });
-        // console.log(this.map);
-        // this.level.layers.forEach((layer:Phaser.Tilemaps.LayerData, i:number)=>{
-        //  this.map.createLayer(layer.name,this.map.tilesets, layer.x, layer.y);
-        // })
         
     }
 }

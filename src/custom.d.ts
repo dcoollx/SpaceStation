@@ -5,3 +5,4 @@ declare module "*.gif";
 declare module "*.ogg";
 declare module "*.mp3";
 declare module "*.tsj"
+declare module "*.tmj"

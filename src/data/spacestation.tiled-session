@@ -1,0 +1,77 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "test.json",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "ground_stamp.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 105.66666666666669,
+                "y": 248.66666666666666
+            }
+        },
+        "ground_stamp.tmx#background": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "ground_stamp.tmx#ground": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "test.json": {
+            "scale": 3,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 175.66666666666663,
+                "y": 186.66666666666669
+            }
+        },
+        "test.json#ground": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "test.json#prototype": {
+            "scaleInEditor": 1
+        },
+        "test.json#prototyping": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data",
+    "last.imagePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/assets",
+    "last.worldFilePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data",
+    "loadedWorlds": [
+        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data/Station.world"
+    ],
+    "map.height": 10,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": "1",
+    "map.renderOrder": "2",
+    "map.width": 10,
+    "openFiles": [
+        "test.json"
+    ],
+    "project": "spacestation.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "test.json",
+        "ground_stamp.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.type": 0,
+    "tileset.useTransparentColor": true
+}
