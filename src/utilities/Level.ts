@@ -19,7 +19,15 @@ export default abstract class Level extends Phaser.Scene{
        
     }
     preload(){
-        this.level.tilesets.forEach(({ name, image }) =>{
+        this.level.tilesets.forEach(({ name, image, tiles }) =>{
+            if(!image){
+                // inside a collection of images
+                tiles.forEach((tile) =>{
+                    this.load.image(name + tile.id, tile.image);
+                    return;
+                })
+
+            }
             this.load.image(name, encodeURI(image))
             this.tileSets.push(name);
         })
