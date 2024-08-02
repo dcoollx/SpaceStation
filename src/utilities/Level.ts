@@ -2,6 +2,7 @@
 
 
 import TiledMap, { TiledLayer } from 'tiled-types'
+import Player from '../entities/Player';
 
 export default abstract class Level extends Phaser.Scene{
     private mapName:string;
@@ -18,7 +19,15 @@ export default abstract class Level extends Phaser.Scene{
        
     }
     preload(){
-        this.level.tilesets.forEach(({ name, image }) =>{
+        this.level.tilesets.forEach(({ name, image, tiles }) =>{
+            if(!image){
+                // inside a collection of images
+                tiles.forEach((tile) =>{
+                    this.load.image(name + tile.id, tile.image);
+                    return;
+                })
+
+            }
             this.load.image(name, encodeURI(image))
             this.tileSets.push(name);
         })
@@ -47,7 +56,15 @@ export default abstract class Level extends Phaser.Scene{
             this.collisionLayer = this.map.createLayer(layer.name, this.map.tilesets.map(l=>l.name) ).setCollisionByProperty({ isSolid: true});
              
         });
-        this.map.objects.forEach(({name}) => {
+        this.map.objects.forEach(({name: layerName, ...rest}) => {
+            rest.objects.forEach(({ name })=>{
+                switch(name){
+                    case'player spawn':
+                        
+                        break;
+                }
+            })
+                
             //this.map.createFromObjects(name,)
         })
         console.log(this.map.layers);
