@@ -28,9 +28,33 @@
          "width":10,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":10,
+         "name":"triggers",
+         "objects":[
+                {
+                 "height":32,
+                 "id":10,
+                 "name":"player spawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":0,
+                 "y":224
+                }],
+         "offsetx":0,
+         "offsety":-64,
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":7,
+ "nextlayerid":11,
+ "nextobjectid":14,
  "orientation":"orthogonal",
  "renderorder":"left-down",
  "tiledversion":"1.11.0",

@@ -17,7 +17,7 @@
             "scale": 1.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 105.66666666666669,
+                "x": 105.33333333333331,
                 "y": 248.66666666666666
             }
         },
@@ -34,15 +34,25 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 175.66666666666663,
-                "y": 186.66666666666669
+                "x": 159.99999999999997,
+                "y": 512
             }
         },
         "test.json#ground": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "test.json#player": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "test.json#player-idle": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
         "test.json#prototype": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "test.json#prototyping": {
@@ -68,10 +78,14 @@
     "project": "spacestation.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "test.json",
-        "ground_stamp.tmx"
+        "ground_stamp.tmx",
+        "test.json"
     ],
     "tileset.embedInMap": true,
-    "tileset.type": 0,
+    "tileset.tileSize": {
+        "height": 40,
+        "width": 32
+    },
+    "tileset.type": 1,
     "tileset.useTransparentColor": true
 }

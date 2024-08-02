@@ -1,11 +1,11 @@
 {
   "name": "template",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/bundle.js",
   "license": "MIT",
   "dependencies": {
     "g": "^2.0.1",
-    "phaser": "^3.60.0",
+    "phaser": "^3.80.1",
     "tiled-types": "^1.3.0",
     "typestate": "^1.0.6",
     "webpack-cli": "^4.6.0",
