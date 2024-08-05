@@ -1,6 +1,6 @@
 { "backgroundcolor":"#010000",
  "compressionlevel":-1,
- "height":10,
+ "height":15,
  "infinite":false,
  "layers":[
         {
@@ -9,23 +9,81 @@
          "locked":true,
          "name":"background",
          "opacity":1,
+         "parallaxx":5,
          "repeatx":true,
          "type":"imagelayer",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
         {
          "compression":"",
-         "data":"BQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAAAAAAAAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAAAAAAAAAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAEAAAABAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAABAAAAAQAAAAIAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAA==",
+         "data":"BQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAABAAAAAQAAAAEAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAACAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAQAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAACAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAACAAAACQAAAAIAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAACAAAACQAAAAIAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAACAAAACQAAAAIAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAACAAAACQAAAAIAAAAFAAAABQAAAAUAAAABAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAABAAAABQAAAAUAAAAFAAAABQAAAAUAAAACAAAACQAAAAIAAAAFAAAABQAAAAUAAAABAAAAAQAAAAUAAAAFAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAABAAAAAQAAAAEAAAABAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAAAQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAABAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAFAAAA",
          "encoding":"base64",
-         "height":10,
+         "height":15,
          "id":9,
          "name":"prototype",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":10,
+         "width":30,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":12,
+         "name":"spawn",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":13,
+         "name":"interactions",
+         "objects":[
+                {
+                 "height":21,
+                 "id":18,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Ledge",
+                 "visible":false,
+                 "width":22,
+                 "x":833,
+                 "y":322
+                }, 
+                {
+                 "gid":15,
+                 "height":32,
+                 "id":19,
+                 "name":"tutorial sign",
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"This is a test of changing the text in Tiled"
+                        }],
+                 "rotation":0,
+                 "type":"Sign",
+                 "visible":true,
+                 "width":32,
+                 "x":385,
+                 "y":160
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"text",
+                 "type":"string",
+                 "value":"testing"
+                }],
+         "type":"objectgroup",
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -33,63 +91,17 @@
          "draworder":"topdown",
          "id":10,
          "name":"hazards",
-         "objects":[
-                {
-                 "gid":3,
-                 "height":32,
-                 "id":7,
-                 "name":"spike",
-                 "properties":[
-                        {
-                         "name":"damage",
-                         "type":"int",
-                         "value":5
-                        }, 
-                        {
-                         "name":"isSolid",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"hazard",
-                 "visible":true,
-                 "width":32,
-                 "x":128,
-                 "y":288
-                }, 
-                {
-                 "gid":3,
-                 "height":32,
-                 "id":8,
-                 "name":"spike",
-                 "properties":[
-                        {
-                         "name":"damage",
-                         "type":"int",
-                         "value":5
-                        }, 
-                        {
-                         "name":"isSolid",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"hazard",
-                 "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":288
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextlayerid":11,
- "nextobjectid":9,
+ "nextlayerid":14,
+ "nextobjectid":20,
  "orientation":"orthogonal",
- "renderorder":"left-down",
+ "renderorder":"right-up",
  "tiledversion":"1.11.0",
  "tileheight":32,
  "tilesets":[
@@ -113,6 +125,54 @@
                          "type":"bool",
                          "value":true
                         }]
+                }, 
+                {
+                 "id":2,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":0,
+                             "id":6,
+                             "name":"spike collision",
+                             "polygon":[
+                                    {
+                                     "x":0,
+                                     "y":0
+                                    }, 
+                                    {
+                                     "x":-3,
+                                     "y":-16
+                                    }, 
+                                    {
+                                     "x":-26,
+                                     "y":-16
+                                    }, 
+                                    {
+                                     "x":-32,
+                                     "y":0
+                                    }],
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":0,
+                             "x":32,
+                             "y":32
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "properties":[
+                        {
+                         "name":"isSolid",
+                         "type":"bool",
+                         "value":true
+                        }]
                 }],
          "tilewidth":32,
          "transparentcolor":"#ff00ff"
@@ -120,5 +180,5 @@
  "tilewidth":32,
  "type":"map",
  "version":"1.10",
- "width":10
+ "width":30
 }

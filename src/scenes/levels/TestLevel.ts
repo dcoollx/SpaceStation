@@ -8,12 +8,10 @@ const levelManifest = {
 
 const levelKey = 'testLevel' as const
 export class TestLevel extends Level {
-    player: Player;
     speed: { x: number, y: number };
     constructor(){
         super(testLevelData, levelKey);
         this.speed = { x: 0, y: 0 };
-        this.player;
     }
     preload() {
         console.time('loading')
@@ -21,7 +19,8 @@ export class TestLevel extends Level {
         this.load.audio('theme', 'assets/Space_Station_Title_Screen.mp3');
         this.load.spritesheet('player-idle', '../assets/space-marine-idle.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
         this.load.spritesheet('player-run', '../assets/space-marine-run.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
-        this.load.spritesheet('player-jump', '../assets/space-marine-jump.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
+        this.load.spritesheet('player-jump', '../assets/space-marine-jump.png', { frameWidth: 34, frameHeight: 32, spacing: 2 });
+        this.load.spritesheet('spike', '../assets/space-marine-jump.png', {frameWidth: 32, frameHeight:32} )
         console.timeEnd('loading')
     }
     create() {
