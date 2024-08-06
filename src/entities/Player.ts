@@ -45,6 +45,13 @@ export default class Player extends Character{
         //this.play = ()=>null;
         this.sm = new typestate.FiniteStateMachine<Player_States>(Player_States.falling);
         this.cursors = controls;
+        this.scene.input.keyboard.on('keydown-SPACE', ()=>{
+            // check if overlapping any interactables, if so call onInteract
+            this.scene.physics.overlap(this, Array.from(this.scene.interactables.values()),(player, interactable)=>{
+                console.log( 'interacting with', (interactable as Interactable).name);
+                (interactable as Interactable).onInteract(this)
+            })
+        });
         this.Acceleration = 20;
         this.jumpPower = -400;
         //setup state machine     
@@ -155,14 +162,6 @@ export default class Player extends Character{
             if(this.sm.currentState !== Player_States.jump)
                 this.sm.go(Player_States.jump);
 
-        }
-        if(this.cursors.space.isDown){
-            // check if overlapping any interactables, if so call onInteract
-            console.log('interact key', this.scene.interactables)
-            this.scene.physics.overlap(this, this.scene.interactables,(player, interactable)=>{
-                console.log( 'interacting with', (interactable as Interactable).name);
-                (interactable as Interactable).onInteract(this)
-            })
         }
         if(!input && this.body.velocity.y === 0){
             this.sm.go(Player_States.idle);

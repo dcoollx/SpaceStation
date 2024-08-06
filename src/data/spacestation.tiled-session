@@ -76,7 +76,7 @@
         "test.json"
     ],
     "project": "spacestation.tiled-project",
-    "property.type": "string",
+    "property.type": "bool",
     "recentFiles": [
         "ground_stamp.tmx",
         "test.json"
