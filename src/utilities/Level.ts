@@ -9,6 +9,7 @@ import { Sign } from '../entities/interactables/Sign';
 import { Interactable } from './Interactables';
 import { Switch } from '../entities/interactables/Switch';
 import { Door } from '../entities/interactables/Doors';
+import { tiledPropertyfolder } from './tiledPropertyfolder';
 
 export default abstract class Level extends Phaser.Scene{
     private mapName:string;
@@ -24,7 +25,7 @@ export default abstract class Level extends Phaser.Scene{
         this.mapName = scene_name + '_map';
         this.level = level;
         this.tileSets = [];
-        this.interactables = new Map();
+        this.interactables = new Map<number, Interactable>();
         this.player = null;
     }
     preload(){
@@ -71,17 +72,19 @@ export default abstract class Level extends Phaser.Scene{
         // })
         //interactions
         this.map.getObjectLayer('interactions').objects.forEach(({properties, id, gid: frame, type, ...rest }) =>{
-            console.log({properties, frame, type, ...rest })
+            console.log({properties, frame, type, ...rest });
+            const foldedProperties = tiledPropertyfolder(properties);
+            console.log(foldedProperties)
             switch(type){
                 case 'Sign':{
-                const sign = new Sign(this,properties[0].value, {frame, ...rest}, null );
+                const sign = new Sign(this, foldedProperties['text'] as string, {frame, ...rest}, null );
                 this.interactables.set(id, sign)
                 this.add.existing(sign);
                 break;
             };
             case 'Switch': {
                 console.log('controls',properties[0].value );
-                const controls = properties[0].value
+                const controls = foldedProperties['controls'] as number
                 // if(!controls){
                 //     // //door hasent been created yet
                 //     const doorObj = this.map.filterObjects('interactions',(obj)=>(obj as unknown as Phaser.Types.Tilemaps.TiledObject).id === controls_id)[0];
@@ -100,7 +103,7 @@ export default abstract class Level extends Phaser.Scene{
                 if(this.interactables.get(id)){
                     //break; // already created door
                 }
-                const door = new Door(this, properties[0].value, null, {frame, ...rest},null);
+                const door = new Door(this, foldedProperties['isLocked'] as boolean, foldedProperties['isOpen'] as boolean, null, {frame, ...rest},null);
                 this.interactables.set(id, door);
                 this.add.existing(door);
                 break;

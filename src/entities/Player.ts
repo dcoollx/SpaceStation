@@ -29,15 +29,18 @@ export default class Player extends Character{
     public stats: playerStats;
     static Player_States = Player_States;
     scene: Level;
+    collisonCat: number
    
     constructor(scene: Level, x: number, y: number,controls: Phaser.Types.Input.Keyboard.CursorKeys, frame?: string | number){
         super(scene, x, y, 'player-idle');
-
+        this.collisonCat = 1
         this.stats = {
             hp: 100,
             mp: 100,
         }
         const physics = scene.physics.add.existing(this);
+        this.body.setCollisionCategory(this.collisonCat);
+        this.body.setCollidesWith([0,1,2,4])
         //physics.setMaxVelocity(200,200)
         scene.cameras.main.startFollow(this);
         this.setCollideWorldBounds(true);

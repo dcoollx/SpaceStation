@@ -85,6 +85,11 @@
                          "name":"isLocked",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"isOpen",
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"Door",

@@ -1,8 +1,8 @@
-import { Interactable, SpriteConfig } from '../../utilities/Interactables';
+import { Interactable, InteractableSprite, SpriteConfig } from '../../utilities/Interactables';
 import Level from '../../utilities/Level';
 import Player, { Player_States } from '../Player';
 
-export class Sign extends Interactable {
+export class Sign extends InteractableSprite {
     text: string;
     display: Phaser.GameObjects.Text
     constructor(level: Level, text: string, config: SpriteConfig, action: Player_States, frame?: string | number, control?: number){
