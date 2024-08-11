@@ -67,8 +67,9 @@ export default class Player extends Character{
         this.addAnimation([{
             key: 'idle',
             frames: this.scene.anims.generateFrameNames('player-idle'),
-            frameRate: 4,
-            repeat: -1
+            frameRate: 24,
+            
+            yoyo: true
         }, {
             key: 'jump',
             frames: this.scene.anims.generateFrameNames('player-jump',{ frames: [0,1,2] }),

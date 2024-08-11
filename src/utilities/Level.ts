@@ -18,7 +18,8 @@ export default abstract class Level extends Phaser.Scene{
     map:Phaser.Tilemaps.Tilemap;
     player: Player;
     interactables: Map<number, Interactable>
-    cursors : Phaser.Types.Input.Keyboard.CursorKeys;
+    cursors : Phaser.Types.Input.Keyboard.CursorKeys;;
+    public background: Phaser.GameObjects.TileSprite; 
     public tileSets: Array<string>
     constructor(level: any, scene_name : string,){
         super({key:scene_name});
@@ -57,10 +58,16 @@ export default abstract class Level extends Phaser.Scene{
         this.tileSets.forEach(tileSet=>{
             this.map.addTilesetImage(tileSet)
         });
+
+
         
-        this.map.images.forEach(( {x, y, name}) => {
-            this.add.image(x,y,name)
+        this.map.images.forEach(( {x, y, name, repeatx, parallaxx }) => {
+            const image = this.add.tileSprite(x, y, 0,0, name)
+            image.setScrollFactor(0,  0 )
+            image.setOrigin(0);
+            this.background = image;
         })
+
         this.map.layers.forEach(layer => {
             this.collisionLayer = this.map.createLayer(layer.name, this.map.tilesets.map(l=>l.name) ).setCollisionByProperty({ isSolid: true});
              
@@ -118,5 +125,9 @@ export default abstract class Level extends Phaser.Scene{
         this.cameras.main.setBounds(0,0,this.game.scale.width * 3,this.game.scale.height);
         console.log(this.map)
         
+    }
+
+    update(time: number, delta: number): void {
+        this.background.tilePositionX = this.cameras.main.scrollX * 0.3
     }
 }

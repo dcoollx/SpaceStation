@@ -6,13 +6,13 @@ const levelManifest = {
 
 }
 
-const levelKey = 'testLevel' as const
 export class TestLevel extends Level {
     speed: { x: number, y: number };
     constructor(){
-        super(testLevelData, levelKey);
+        super(testLevelData, TestLevel.levelKey);
         this.speed = { x: 0, y: 0 };
     }
+    static levelKey = 'testLevel' as const
     preload() {
         console.time('loading')
         super.preload();
