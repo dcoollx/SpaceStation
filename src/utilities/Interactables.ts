@@ -50,16 +50,19 @@ export abstract class InteractableWithPhysics extends Phaser.GameObjects.GameObj
     action: Player_States
     constructor(scene: Level, action: Player_States, config: SpriteConfig, control?: number){
         super(scene, 'trigger');
-        this.body = scene.physics.add.staticBody(config.x, config.y, config.width, config.height)
-        this.body.setCollisionCategory(2);
+        //this.body = scene.physics.add.staticBody(config.x, config.y, config.width, config.height)
+        this.body = new Phaser.Physics.Arcade.StaticBody(this.scene.physics.world, this);
+        scene.physics.add.existing(this, true);
+        // this.body.setSize(config.width, config.height)
+        // this.body.setCollisionCategory(2);
         //this.body.immovable = true;
         this.body.setCollidesWith([1,2,3,4])
         scene.add.existing(this);
-        this.width = config.width;
-        this.height = config.height;
-        this.name = config.name;
+        // this.width = config.width;
+        // this.height = config.height;
+        this.setName(config.name);
         this.action = action;
-        this.body.onCollide = true;
+        scene.physics.world.enableBody(this, Phaser.Physics.Arcade.STATIC_BODY);
     }
     abstract onInteract(source: GameObjects.GameObject): void;
 }

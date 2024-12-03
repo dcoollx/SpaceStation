@@ -92,24 +92,12 @@ export default abstract class Level extends Phaser.Scene{
             case 'Switch': {
                 console.log('controls',properties[0].value );
                 const controls = foldedProperties['controls'] as number
-                // if(!controls){
-                //     // //door hasent been created yet
-                //     const doorObj = this.map.filterObjects('interactions',(obj)=>(obj as unknown as Phaser.Types.Tilemaps.TiledObject).id === controls_id)[0];
-                //     console.log('found door this is foor', doorObj);
-                //     const door = new Door(this, doorObj.properties[0].value,null, {frame: doorObj.gid, ...doorObj});
-                //     this.interactables.set(id, door);
-                //     this.add.existing(door);
-                //     controls = door;
-                // }
                 const button = new Switch(this,controls, rest,null);
                 this.interactables.set(id, button);
                 this.add.existing(button);
                 break;
             }
             case 'Door': {
-                if(this.interactables.get(id)){
-                    //break; // already created door
-                }
                 const door = new Door(this, foldedProperties['isLocked'] as boolean, foldedProperties['isOpen'] as boolean, null, {frame, ...rest},null);
                 this.interactables.set(id, door);
                 this.add.existing(door);
@@ -128,6 +116,9 @@ export default abstract class Level extends Phaser.Scene{
     }
 
     update(time: number, delta: number): void {
-        this.background.tilePositionX = this.cameras.main.scrollX * 0.3
+        if(this.background){
+            this.background.tilePositionX = this.cameras.main.scrollX * 0.3
+        }
+        
     }
 }

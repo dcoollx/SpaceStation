@@ -14,10 +14,9 @@ export class Door extends InteractableWithPhysics{
         this.isOpen = isOpen;
         this.body.checkCollision.right = true;
         this.body.checkCollision.left = true;
-       
         this.scene.physics.add.collider(this, this.scene.player, (door, player)=> alert('door hit player'));
-        this.body.setCollisionCategory(1);
-        this.body.setCollidesWith([1,2,3,4])
+        // this.body.setCollisionCategory(1);
+        // this.body.setCollidesWith([1,2,3,4])
         if(this.isLocked){  
             
             this.body.debugBodyColor = 255000000
@@ -26,19 +25,26 @@ export class Door extends InteractableWithPhysics{
         
         console.log('door', this)
     }
+    protected onCollison(){
+        console.log('collsion with', this.name)
+    }
     public setTrigger(trigger: Interactable){
         this.trigger = trigger;
     }
     public onInteract(source: Phaser.GameObjects.GameObject): void {
-        if(source === this.scene.player){
-            console.log('player can not directly interact with door')
-                return;
+        if(source === this.scene.player && !this.isLocked){
+            this.toggleOpen();
+            console.log(`${this.name} is ${this.isOpen ? 'open' : 'closed'}`)
+        }else {
+            console.log(`${this.name} is ${this.isLocked ? 'locked': 'unlocked'}`)
+            this.toggleLock();
         }
-        console.log(`${this.name} is ${this.isLocked ? 'locked': 'unlocked'}`)
-       this.toggleLock()
     }
     private toggleLock(){
         this.isLocked = !this.isLocked;
         //play open/close animation
+    }
+    private toggleOpen() {
+        this.isOpen = !this.isOpen;
     }
 }

@@ -26,7 +26,7 @@ const config: Phaser.Types.Core.GameConfig ={
     backgroundColor: 'blue',
     transparent: true,
     clearBeforeRender: false,
-    scene : [Menu, TestLevel]
+    scene :  [TestLevel]
 };
 
 
