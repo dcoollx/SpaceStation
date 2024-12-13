@@ -1,15 +1,15 @@
 // ts-ignore
-import { Interactable, InteractableWithPhysics, SpriteConfig } from '../utilities/Interactables';
+import { Interactable, InteractableSprite, SpriteConfig } from '../utilities/Interactables';
 import Level from '../utilities/Level';
-import Player from './Player';
+import Player, { Player_States } from './Player';
 
-export default class Ledge extends InteractableWithPhysics {
-    constructor(scene: Level, config: SpriteConfig){
-        super(scene, Player.Player_States.hang, config, null);
+export default class Ledge extends InteractableSprite {
+    constructor(scene: Level, id:number, config: SpriteConfig){
+        super(scene, id, '', config);
     }
 
     onInteract(player: Player): void {
-        player.sm.go(this.action, this)
+        player.sm.go(Player_States.hang, this)
     }
 
 }

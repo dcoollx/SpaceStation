@@ -2,9 +2,6 @@ import Level from '../../utilities/Level';
 import testLevelData from '../../data/test.json';
 import Player from '../../entities/Player';
 
-const levelManifest = {
-
-}
 
 export class TestLevel extends Level {
     speed: { x: number, y: number };
@@ -25,15 +22,16 @@ export class TestLevel extends Level {
     }
     create() {
         super.create();
-        this.player = new Player(this, 0,0, this.input.keyboard.createCursorKeys())
         this.physics.world.setBounds(0,0,this.map.widthInPixels, this.map.heightInPixels);
         this.physics.world.gravity.y = 700;
         const music = this.sound.play('theme',{loop:true});
         this.sound.volume = 0.3;
         this.cameras.main.setZoom(2);
         //this.cameras.main.followOffset.set(-50,0);
-        this.physics.add.collider(this.player, this.collisionLayer)
-        
+        this.player = new Player(this, 0,0, this.input.keyboard!.createCursorKeys())
+        this.physics.add.collider(this.player, this.collisionLayer);
+        this.physics.add.collider(this.player, this.interactables);
+       
 
 
     }

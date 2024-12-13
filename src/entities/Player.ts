@@ -21,26 +21,24 @@ export enum Player_States {
 }
 
 export default class Player extends Character{
-    private MAX_SPEED:number;
+    // private MAX_SPEED:number;
     public Acceleration: number;
     private cursors:Phaser.Types.Input.Keyboard.CursorKeys
     public jumpPower: number;
     public sm : typestate.FiniteStateMachine<Player_States>;
     public stats: playerStats;
     static Player_States = Player_States;
-    scene: Level;
-    collisonCat: number
+    scene!: Level;
+    body!: Phaser.Physics.Arcade.Body;
    
     constructor(scene: Level, x: number, y: number,controls: Phaser.Types.Input.Keyboard.CursorKeys, frame?: string | number){
         super(scene, x, y, 'player-idle');
-        this.collisonCat = 1
         this.stats = {
             hp: 100,
             mp: 100,
         }
         const physics = scene.physics.add.existing(this);
-        this.body.setCollisionCategory(this.collisonCat);
-        this.body.setCollidesWith([0,1,2,4])
+        
         //physics.setMaxVelocity(200,200)
         scene.cameras.main.startFollow(this);
         this.setCollideWorldBounds(true);
@@ -48,13 +46,15 @@ export default class Player extends Character{
         //this.play = ()=>null;
         this.sm = new typestate.FiniteStateMachine<Player_States>(Player_States.falling);
         this.cursors = controls;
-        this.scene.input.keyboard.on('keydown-SPACE', ()=>{
+        scene.input.keyboard!.on('keydown-SPACE', ()=>{
             // check if overlapping any interactables, if so call onInteract
-            this.scene.physics.overlap(this, Array.from(this.scene.interactables.values()),(player, interactable)=>{
+                this.scene.physics.overlap(this, this.scene.interactables,(player, interactable)=>{
                 console.log( 'interacting with', (interactable as Interactable).name);
                 (interactable as Interactable).onInteract(this)
             })
         });
+        
+
         this.Acceleration = 20;
         this.jumpPower = -400;
         //setup state machine     
@@ -105,6 +105,7 @@ export default class Player extends Character{
           }else
             return true;
         });
+        // @ts-expect-error honestly dont know wha ts is smoking
         sm.onEnter(Player_States.run,(from: Player_States, e)=>{
             if(from === Player_States.falling || from === Player_States.jump){
                 if(this.body.blocked.down){

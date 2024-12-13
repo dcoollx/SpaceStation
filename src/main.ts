@@ -8,7 +8,7 @@ const defaultSettings = {
     debug:true,
     screenRatio : {x:21,y:9}
 }
-const settings = localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : defaultSettings
+const settings = localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings') ?? '') : defaultSettings
 const config: Phaser.Types.Core.GameConfig ={
     type: Phaser.AUTO,
     physics: {
