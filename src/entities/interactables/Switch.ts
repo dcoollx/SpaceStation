@@ -5,19 +5,22 @@ import Player, { Player_States } from '../Player';
 
 export class Switch extends InteractableSprite {
     scene!: Level;
-    protected controls: number;
-    constructor(level: Level, id:number, controls: number, config: SpriteConfig, control?: number){
+    protected controlsId: number | undefined;
+    protected controls: Interactable | null;
+    constructor(level: Level, id:number, controlsId: number, config: SpriteConfig, controlId?: number){
         super(level, id, 'prototype', config);
-        this.controls = controls;
+        this.controls = null;
+        this.controlsId = controlId;
         this.body = this.scene.physics.add.existing(this, true).body
-        this.body.checkCollision.none = true;
-        this.body.onOverlap = true;
-        //this.scene.physics.add.collider(this, this.scene.player)
+        this.setOrigin(-1, 1)
+        this.body.onCollide = false;
+        //     this.scene.physics.add.overlap(this, this.scene.player, ()=> console.log('button overlap'))
     }
     onInteract(source: Phaser.GameObjects.GameObject): void {
-
-        const door: Interactable = this.scene.interactables.getMatching('id', this.controls)[0]
-        console.log(door)
-        door.onInteract(this);
+        if(!this.controls){
+            this.controls = this.scene.groups.interactables.getMatching('id', this.controlsId)[0]
+        }
+        this.controls?.onInteract(this);
     }
+    
 }

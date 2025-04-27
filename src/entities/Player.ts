@@ -48,7 +48,7 @@ export default class Player extends Character{
         this.cursors = controls;
         scene.input.keyboard!.on('keydown-SPACE', ()=>{
             // check if overlapping any interactables, if so call onInteract
-                this.scene.physics.overlap(this, this.scene.interactables,(player, interactable)=>{
+                this.scene.physics.overlap(this, this.scene.groups.interactables,(player, interactable)=>{
                 console.log( 'interacting with', (interactable as Interactable).name);
                 (interactable as Interactable).onInteract(this)
             })

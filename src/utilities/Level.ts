@@ -11,13 +11,18 @@ import { Switch } from '../entities/interactables/Switch';
 import { Door } from '../entities/interactables/Doors';
 import { tiledPropertyfolder } from './tiledPropertyfolder';
 
+export enum Groups {
+    interactables= 'interactables',
+    solid = 'solid',
+}
+
 export default abstract class Level extends Phaser.Scene{
     private mapName:string;
     private level: TiledMap;
     collisionLayer!: Phaser.Tilemaps.TilemapLayer;
     map!:Phaser.Tilemaps.Tilemap;
     player!: Player;
-    interactables!: Phaser.GameObjects.Group;
+    groups: Record<Groups, Phaser.GameObjects.Group>
     cursors! : Phaser.Types.Input.Keyboard.CursorKeys;
     public background!: Phaser.GameObjects.TileSprite; 
     public tileSets: Array<string>
@@ -26,10 +31,12 @@ export default abstract class Level extends Phaser.Scene{
         this.mapName = scene_name + '_map';
         this.level = level;
         this.tileSets = [];
+        this.groups = {} as Record<Groups, Phaser.GameObjects.Group>;
         
     }
     preload(){
-        this.interactables = this.add.group();
+        this.groups.interactables = this.add.group();
+        this.groups.solid =  this.add.group()
         this.level.tilesets.forEach(({ name, image, tiles, tileheight: frameHeight, tilewidth: frameWidth, spacing, firstgid: startFrame }) =>{
             if(!image){
                 // inside a collection of images
@@ -87,7 +94,7 @@ export default abstract class Level extends Phaser.Scene{
             switch(type){
                 case 'Sign':{
                 const sign = new Sign(this, id, foldedProperties?.['text'] as string ?? '', {frame, ...rest}, '');
-                this.interactables.add(sign, true);
+                this.groups.interactables.add(sign, true);
                 //this.add.existing(sign);
                 break;
             };
@@ -95,13 +102,14 @@ export default abstract class Level extends Phaser.Scene{
                 console.log('controls',properties[0].value );
                 const controls = foldedProperties?.['controls'] as number ?? 0
                 const button = new Switch(this, id, controls, rest);
-                this.interactables.add(button);
+                this.groups.interactables.add(button);
                 this.add.existing(button);
                 break;
             }
             case 'Door': {
                 const door = new Door(this, id, foldedProperties?.['isLocked'] as boolean, foldedProperties?.['isOpen'] as boolean, {frame, ...rest},null);
-                this.interactables.add(door)
+                this.groups.interactables.add(door)
+                this.groups.solid.add(door);
                 this.add.existing(door);
                 break;
             }
