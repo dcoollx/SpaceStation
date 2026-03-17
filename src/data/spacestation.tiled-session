@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "test.json",
+    "activeFile": "",
     "expandedProjectPaths": [
         "."
     ],
@@ -32,7 +32,7 @@
         },
         "test.json": {
             "scale": 3,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
                 "x": 159.99999999999997,
                 "y": 512
@@ -76,7 +76,7 @@
         "test.json"
     ],
     "project": "spacestation.tiled-project",
-    "property.type": "bool",
+    "property.type": "object",
     "recentFiles": [
         "ground_stamp.tmx",
         "test.json"

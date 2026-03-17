@@ -1,45 +1,60 @@
+import { Interactable } from '../utilities/Interactables';
+import Level from '../utilities/Level';
 import Character from './Character';
 //import StateMachine, {State} from './StateMachine';
 import { typestate } from 'typestate';
 
 
-enum Player_States{
-            idle,
-            //walk,
-            run,
-            falling,
-            climb,
-            jump
-        }
 type playerStats = {
     hp: number;
     mp: number;
 
 }
+export enum Player_States {
+    idle,
+    //walk,
+    run,
+    falling,
+    climb,
+    jump,
+    hang,
+}
 
 export default class Player extends Character{
-    private MAX_SPEED:number;
+    // private MAX_SPEED:number;
     public Acceleration: number;
     private cursors:Phaser.Types.Input.Keyboard.CursorKeys
     public jumpPower: number;
-    private sm : typestate.FiniteStateMachine<Player_States>;
+    public sm : typestate.FiniteStateMachine<Player_States>;
     public stats: playerStats;
-
+    static Player_States = Player_States;
+    scene!: Level;
+    body!: Phaser.Physics.Arcade.Body;
    
-    constructor(scene: Phaser.Scene, x: number, y: number,controls: Phaser.Types.Input.Keyboard.CursorKeys, frame?: string | number){
+    constructor(scene: Level, x: number, y: number,controls: Phaser.Types.Input.Keyboard.CursorKeys, frame?: string | number){
         super(scene, x, y, 'player-idle');
-
         this.stats = {
             hp: 100,
             mp: 100,
         }
-        scene.physics.add.existing(this);
+        const physics = scene.physics.add.existing(this);
+        
+        //physics.setMaxVelocity(200,200)
         scene.cameras.main.startFollow(this);
         this.setCollideWorldBounds(true);
         this.body.setMass(300);
         //this.play = ()=>null;
         this.sm = new typestate.FiniteStateMachine<Player_States>(Player_States.falling);
         this.cursors = controls;
+        scene.input.keyboard!.on('keydown-SPACE', ()=>{
+            // check if overlapping any interactables, if so call onInteract
+                this.scene.physics.overlap(this, this.scene.interactables,(player, interactable)=>{
+                console.log( 'interacting with', (interactable as Interactable).name);
+                (interactable as Interactable).onInteract(this)
+            })
+        });
+        
+
         this.Acceleration = 20;
         this.jumpPower = -400;
         //setup state machine     
@@ -52,8 +67,9 @@ export default class Player extends Character{
         this.addAnimation([{
             key: 'idle',
             frames: this.scene.anims.generateFrameNames('player-idle'),
-            frameRate: 4,
-            repeat: -1
+            frameRate: 24,
+            
+            yoyo: true
         }, {
             key: 'jump',
             frames: this.scene.anims.generateFrameNames('player-jump',{ frames: [0,1,2] }),
@@ -74,6 +90,7 @@ export default class Player extends Character{
         this.scale = 1; // why was this 2?
         
     }
+    
 
 
     registerEvents(){
@@ -88,6 +105,7 @@ export default class Player extends Character{
           }else
             return true;
         });
+        // @ts-expect-error honestly dont know wha ts is smoking
         sm.onEnter(Player_States.run,(from: Player_States, e)=>{
             if(from === Player_States.falling || from === Player_States.jump){
                 if(this.body.blocked.down){
@@ -107,7 +125,7 @@ export default class Player extends Character{
                 sm.go(Player_States.idle);
                 return;
             }
-            //this.play('fall', true);
+            this.play('fall', true);
         });
         sm.on(Player_States.idle,()=>{
             this.play('idle', true);
@@ -127,7 +145,6 @@ export default class Player extends Character{
     }
     update():void{
         let input =false
-        //let charState = this.stateMachine.currentState.name
 
         if(this.sm.currentState == Player_States.jump){
             if(this.body.velocity.y > 0){
@@ -163,7 +180,7 @@ export default class Player extends Character{
     
 }
 Phaser.GameObjects.GameObjectFactory.register('Player', function (this: Phaser.GameObjects.GameObjectFactory, x: number, y: number, controls: Phaser.Types.Input.Keyboard.CursorKeys ){
-    const player = new Player(this.scene, x, y, controls);
+    const player = new Player(this.scene as Level, x, y, controls);
     this.displayList.add(player);
     this.updateList.add(player);
     return player;
