@@ -1,5 +1,5 @@
 node_modules
 dist/
-src/SpaceStation.tiled-session
+src/data/spacestation.tiled-session
 unused_assets
 coverage/**/*
