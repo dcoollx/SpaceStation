@@ -1,0 +1,95 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "test.json",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "ground_stamp.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 147.33333333333331,
+                "y": 343.66666666666663
+            }
+        },
+        "ground_stamp.tmx#background": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "ground_stamp.tmx#ground": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "test.json": {
+            "expandedObjectLayers": [
+                12,
+                13
+            ],
+            "scale": 0.75,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 492,
+                "y": 207.3333333333333
+            }
+        },
+        "test.json#ground": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "test.json#player": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "test.json#player-idle": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "test.json#prototype": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "test.json#prototyping": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data",
+    "last.imagePath": "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/testlevel",
+    "last.worldFilePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data",
+    "loadedWorlds": [
+        "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data/Station.world"
+    ],
+    "map.height": 10,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": "1",
+    "map.renderOrder": "2",
+    "map.width": 10,
+    "openFiles": [
+        "test.json"
+    ],
+    "project": "spacestation.tiled-project",
+    "property.type": "object",
+    "recentFiles": [
+        "test.json",
+        "ground_stamp.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 40,
+        "width": 32
+    },
+    "tileset.type": 1,
+    "tileset.useTransparentColor": true
+}

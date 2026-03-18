@@ -16,135 +16,6 @@
          "width":300,
          "x":0,
          "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":12,
-         "name":"spawn",
-         "objects":[
-                {
-                 "height":54.6666666666666,
-                 "id":25,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"",
-                 "visible":false,
-                 "width":30.6666666666667,
-                 "x":1.33333333333333,
-                 "y":324
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":13,
-         "name":"interactions",
-         "objects":[
-                {
-                 "height":21,
-                 "id":18,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"Ledge",
-                 "visible":false,
-                 "width":22,
-                 "x":833,
-                 "y":322
-                }, 
-                {
-                 "gid":16,
-                 "height":32,
-                 "id":20,
-                 "name":"door switch",
-                 "opacity":1,
-                 "properties":[
-                        {
-                         "name":"controls",
-                         "type":"object",
-                         "value":22
-                        }],
-                 "rotation":0,
-                 "type":"Switch",
-                 "visible":true,
-                 "width":32,
-                 "x":320,
-                 "y":160
-                }, 
-                {
-                 "height":96,
-                 "id":22,
-                 "name":"door-1",
-                 "opacity":1,
-                 "properties":[
-                        {
-                         "name":"isLocked",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"isOpen",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"Door",
-                 "visible":true,
-                 "width":32,
-                 "x":448,
-                 "y":96
-                }, 
-                {
-                 "height":160,
-                 "id":23,
-                 "name":"ladder-1",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"Ladder",
-                 "visible":true,
-                 "width":96,
-                 "x":640,
-                 "y":224
-                }, 
-                {
-                 "height":38.6666666666667,
-                 "id":24,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":41.3333333333334,
-                 "x":578.666666666667,
-                 "y":58.6666666666667
-                }],
-         "opacity":1,
-         "properties":[
-                {
-                 "name":"text",
-                 "type":"string",
-                 "value":"testing"
-                }],
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":10,
-         "name":"hazards",
-         "objects":[],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
         }],
  "nextlayerid":14,
  "nextobjectid":26,
@@ -156,7 +27,7 @@
         {
          "columns":4,
          "firstgid":1,
-         "image":"..\/..\/public\/assets\/testlevel\/prototype_tiles.png",
+         "image":"prototype_tiles.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,

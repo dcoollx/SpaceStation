@@ -1,23 +1,24 @@
 import Level from '../../utilities/Level';
-import testLevelData from '../../data/test.json';
 import Player from '../../entities/Player';
 
 
 export class TestLevel extends Level {
     speed: { x: number, y: number };
     constructor(){
-        super(testLevelData, TestLevel.levelKey);
+        super('testlevel/test.json', TestLevel.levelKey);
         this.speed = { x: 0, y: 0 };
     }
     static levelKey = 'testLevel' as const
     preload() {
         console.time('loading')
-        super.preload();
-        this.load.audio('theme', 'assets/sounds/Space_Station_Title_Screen.mp3');
-        this.load.spritesheet('player-idle', '../assets/player/space-marine-idle.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
-        this.load.spritesheet('player-run', '../assets/player/space-marine-run.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
-        this.load.spritesheet('player-jump', '../assets/player/space-marine-jump.png', { frameWidth: 34, frameHeight: 32, spacing: 2 });
-        this.load.spritesheet('spike', '../assets/player/space-marine-jump.png', {frameWidth: 32, frameHeight:32} )
+        this.load.setBaseURL('assets')
+        super.preload('assets/testlevel');
+        this.load.setBaseURL('assets')
+        this.load.audio('theme', 'sounds/Space_Station_Title_Screen.mp3');
+        this.load.spritesheet('player-idle', 'player/space-marine-idle.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
+        this.load.spritesheet('player-run', 'player/space-marine-run.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
+        this.load.spritesheet('player-jump', 'player/space-marine-jump.png', { frameWidth: 34, frameHeight: 32, spacing: 2 });
+        this.load.spritesheet('spike', 'player/space-marine-jump.png', {frameWidth: 32, frameHeight:32} )
         console.timeEnd('loading')
     }
     create() {

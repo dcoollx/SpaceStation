@@ -10,7 +10,7 @@ import { tiledPropertyfolder } from './tiledPropertyfolder';
 
 export default abstract class Level extends Phaser.Scene{
     private mapName:string;
-    private level: TiledMap;
+    private level: string;
     collisionLayer!: Phaser.Tilemaps.TilemapLayer;
     map!:Phaser.Tilemaps.Tilemap;
     player!: Player;
@@ -18,18 +18,24 @@ export default abstract class Level extends Phaser.Scene{
     cursors! : Phaser.Types.Input.Keyboard.CursorKeys;
     public background!: Phaser.GameObjects.TileSprite; 
     public tileSets: Array<string>
-    constructor(level: any, scene_name : string,){
+    levelKey: string;
+    constructor(level: string, scene_name : string,){
         super({key:scene_name});
         this.mapName = scene_name + '_map';
         this.level = level;
+        this.levelKey = scene_name + '_level';
         this.tileSets = [];
     }
-    preload(){
-        this.interactables = this.add.group();
-        this.level.tilesets.forEach(({ name, image, tiles, tileheight: frameHeight, tilewidth: frameWidth, spacing, firstgid: startFrame }) =>{
+    preload(baseUrl?: string){
+        this.load.setBaseURL(baseUrl)
+        console.log(this.load.baseURL, 'base url')
+        this.load.json(this.levelKey, this.level)
+        this.load.on(`filecomplete-json-${this.levelKey}`, (_: string, _2: unknown, level: TiledMap)=>{
+             level.tilesets.forEach(({ name, image, tiles, tileheight: frameHeight, tilewidth: frameWidth, spacing, firstgid: startFrame }) =>{
             if(!image){
                 // inside a collection of images
                 tiles!.forEach((tile) =>{
+                    
                     this.load.image(name + tile.id, tile.image);
                     return;
                 })
@@ -39,17 +45,19 @@ export default abstract class Level extends Phaser.Scene{
             this.tileSets.push(name);
         })
 
-        this.level.layers.forEach(({name, type, ...rest })=>{
+        level.layers.forEach(({name, type, ...rest })=>{
             if(type === 'imagelayer'){
                 this.load.image(name, encodeURI((rest as any).image));
             }
+        })
+         this.load.tilemapTiledJSON(this.mapName,this.level)
         })
        
         if(!this.input.keyboard){
             throw new Error('keyboard plugin missing')
         }
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.load.tilemapTiledJSON(this.mapName,this.level)
+       
     }
     create(){
         this.map = this.make.tilemap({ key: this.mapName });
@@ -76,36 +84,6 @@ export default abstract class Level extends Phaser.Scene{
         //     this.physics.add.existing(hazard, true);
         // })
         //interactions
-        this.map.getObjectLayer('interactions')!.objects.forEach(({properties, id, gid: frame, type, ...rest }) =>{
-            console.log({properties, frame, type, ...rest });
-            const foldedProperties = tiledPropertyfolder(properties);
-            console.log(foldedProperties)
-            switch(type){
-            //     case 'Sign':{
-            //     const sign = new Sign(this, id, foldedProperties?.['text'] as string ?? '', {frame, ...rest}, '');
-            //     this.interactables.add(sign, true);
-            //     //this.add.existing(sign);
-            //     break;
-            // };
-            // case 'Switch': {
-            //     console.log('controls',properties[0].value );
-            //     const controls = foldedProperties?.['controls'] as number ?? 0
-            //     const button = new Switch(this, id, controls, rest);
-            //     this.interactables.add(button);
-            //     this.add.existing(button);
-            //     break;
-            // }
-            case 'Door': {
-                const door = new Door(this, id, foldedProperties?.['isLocked'] as boolean, foldedProperties?.['isOpen'] as boolean, {frame, ...rest});
-                this.interactables.add(door)
-                this.add.existing(door);
-                break;
-            }
-            default:{
-                console.warn(`encountered an unregistered object in the interaction layer: ${type}`)
-            }
-        }
-        });
         console.log(this.map.layers);
         this.map.setCollisionFromCollisionGroup(true, false, 'Collision')
         this.cameras.main.setBounds(0,0,this.game.scale.width * 3,this.game.scale.height);

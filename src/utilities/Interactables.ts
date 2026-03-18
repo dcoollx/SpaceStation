@@ -58,18 +58,3 @@ export class TriggerZone extends BaseTrigger {
 
 }
 
-export abstract class InteractableSprite extends Phaser.Physics.Arcade.Sprite implements Trigger {
-    public id: number;
-    body!: Phaser.Physics.Arcade.StaticBody;
-    constructor(scene: Level, id: number, texture: string | Phaser.Textures.Texture,  config: SpriteConfig){
-        super(scene, config.x!, config.y!, 'prototype', (config.frame as number)-1);
-        this.setOrigin(0,-1);
-        this.height = config.height ?? this.height;
-        this.width = config.width ?? this.width;
-        this.id = id;
-        this.setName(config.name);
-        this.body = this.scene.physics.add.existing(this, true).body
-    }
-    
-    abstract onTrigger(source: GameObjects.GameObject): void;
-}
