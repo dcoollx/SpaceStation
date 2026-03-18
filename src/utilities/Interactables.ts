@@ -13,30 +13,52 @@ export interface SpriteConfig {
     width?: number,
 }
 
-export interface Interactable extends Phaser.GameObjects.GameObject {
+export interface Trigger extends Phaser.GameObjects.GameObject {
     name: string;
     id: number;
-    onInteract(source: GameObjects.GameObject): void;
+    onTrigger(source?: GameObjects.GameObject): void;
 }
 
-export abstract class BaseInteractable extends Phaser.GameObjects.GameObject implements Interactable{
-    protected action: Player_States
+export abstract class BaseTrigger extends Phaser.GameObjects.GameObject implements Trigger{
     //public name: string;
     protected control?: number;
     public id: number;
-    constructor(scene: Level, id: number, action: Player_States, config: { name: string }, control?: number){
+    constructor(scene: Level, id: number, config: { name: string }){
         super(scene, config.name);
-        this.action = action;
         this.id = id;
-        this.control = control;
-
         this.name = config.name
     }
 
-    abstract onInteract(source: GameObjects.GameObject): void;
+    abstract onTrigger(source?: GameObjects.GameObject): void;
 }
 
-export abstract class InteractableSprite extends Phaser.Physics.Arcade.Sprite implements Interactable {
+export class TriggerZone extends BaseTrigger {
+    body!: Phaser.Physics.Arcade.StaticBody;
+    triggerEvents: Function[]
+    constructor(scene: Level, id: number, config: { name: string, height?: number, width?: number, x?: number, y?: number }, control?: number){
+        
+        super(scene, id, config)
+        this.body = this.scene.physics.add.staticBody(config.x ?? 0, config.y ?? 0, config.width, config.height)
+        this.triggerEvents = [];
+        this.scene.physics.add.overlap(this, scene.player,()=> this.onTrigger(scene.player))
+    }
+
+    setOnTrigger<T>(triggerFN: (source?: GameObjects.GameObject) => T): number {
+        this.triggerEvents.push(triggerFN)
+        return this.triggerEvents.length -1 // return key of event
+    }
+
+    removeTriggerEvent(key: number){
+       delete this.triggerEvents[key];
+    }
+
+    onTrigger(source?: GameObjects.GameObject): void {
+        this.triggerEvents.forEach(t=>t(source))
+    }
+
+}
+
+export abstract class InteractableSprite extends Phaser.Physics.Arcade.Sprite implements Trigger {
     public id: number;
     body!: Phaser.Physics.Arcade.StaticBody;
     constructor(scene: Level, id: number, texture: string | Phaser.Textures.Texture,  config: SpriteConfig){
@@ -49,5 +71,5 @@ export abstract class InteractableSprite extends Phaser.Physics.Arcade.Sprite im
         this.body = this.scene.physics.add.existing(this, true).body
     }
     
-    abstract onInteract(source: GameObjects.GameObject): void;
+    abstract onTrigger(source: GameObjects.GameObject): void;
 }

@@ -21,7 +21,19 @@
          "draworder":"topdown",
          "id":12,
          "name":"spawn",
-         "objects":[],
+         "objects":[
+                {
+                 "height":54.6666666666666,
+                 "id":25,
+                 "name":"",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":30.6666666666667,
+                 "x":1.33333333333333,
+                 "y":324
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -37,6 +49,7 @@
                  "height":21,
                  "id":18,
                  "name":"",
+                 "opacity":1,
                  "rotation":0,
                  "type":"Ledge",
                  "visible":false,
@@ -49,6 +62,7 @@
                  "height":32,
                  "id":20,
                  "name":"door switch",
+                 "opacity":1,
                  "properties":[
                         {
                          "name":"controls",
@@ -66,6 +80,7 @@
                  "height":96,
                  "id":22,
                  "name":"door-1",
+                 "opacity":1,
                  "properties":[
                         {
                          "name":"isLocked",
@@ -88,12 +103,25 @@
                  "height":160,
                  "id":23,
                  "name":"ladder-1",
+                 "opacity":1,
                  "rotation":0,
                  "type":"Ladder",
                  "visible":true,
                  "width":96,
                  "x":640,
                  "y":224
+                }, 
+                {
+                 "height":38.6666666666667,
+                 "id":24,
+                 "name":"",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":41.3333333333334,
+                 "x":578.666666666667,
+                 "y":58.6666666666667
                 }],
          "opacity":1,
          "properties":[
@@ -119,16 +147,16 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":24,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.12.0",
  "tileheight":32,
  "tilesets":[
         {
          "columns":4,
          "firstgid":1,
-         "image":"..\/assets\/prototype_tiles.png",
+         "image":"..\/..\/public\/assets\/testlevel\/prototype_tiles.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
@@ -157,6 +185,7 @@
                              "height":0,
                              "id":6,
                              "name":"spike collision",
+                             "opacity":1,
                              "polygon":[
                                     {
                                      "x":0,

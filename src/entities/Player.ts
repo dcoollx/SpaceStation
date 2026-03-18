@@ -1,4 +1,3 @@
-import { Interactable } from '../utilities/Interactables';
 import Level from '../utilities/Level';
 import Character from './Character';
 //import StateMachine, {State} from './StateMachine';
@@ -45,16 +44,7 @@ export default class Player extends Character{
         this.body.setMass(300);
         //this.play = ()=>null;
         this.sm = new typestate.FiniteStateMachine<Player_States>(Player_States.falling);
-        this.cursors = controls;
-        scene.input.keyboard!.on('keydown-SPACE', ()=>{
-            // check if overlapping any interactables, if so call onInteract
-                this.scene.physics.overlap(this, this.scene.interactables,(player, interactable)=>{
-                console.log( 'interacting with', (interactable as Interactable).name);
-                (interactable as Interactable).onInteract(this)
-            })
-        });
-        
-
+        this.cursors = controls;       
         this.Acceleration = 20;
         this.jumpPower = -400;
         //setup state machine     

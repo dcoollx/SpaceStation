@@ -13,11 +13,11 @@ export class TestLevel extends Level {
     preload() {
         console.time('loading')
         super.preload();
-        this.load.audio('theme', 'assets/Space_Station_Title_Screen.mp3');
-        this.load.spritesheet('player-idle', '../assets/space-marine-idle.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
-        this.load.spritesheet('player-run', '../assets/space-marine-run.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
-        this.load.spritesheet('player-jump', '../assets/space-marine-jump.png', { frameWidth: 34, frameHeight: 32, spacing: 2 });
-        this.load.spritesheet('spike', '../assets/space-marine-jump.png', {frameWidth: 32, frameHeight:32} )
+        this.load.audio('theme', 'assets/sounds/Space_Station_Title_Screen.mp3');
+        this.load.spritesheet('player-idle', '../assets/player/space-marine-idle.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
+        this.load.spritesheet('player-run', '../assets/player/space-marine-run.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
+        this.load.spritesheet('player-jump', '../assets/player/space-marine-jump.png', { frameWidth: 34, frameHeight: 32, spacing: 2 });
+        this.load.spritesheet('spike', '../assets/player/space-marine-jump.png', {frameWidth: 32, frameHeight:32} )
         console.timeEnd('loading')
     }
     create() {

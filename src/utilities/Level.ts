@@ -5,10 +5,7 @@ import TiledMap, { TiledLayer } from 'tiled-types'
 import StaticHazard from '../entities/Spike';
 import Player from '../entities/Player';
 import Spike from '../entities/Spike';
-import { Sign } from '../entities/interactables/Sign';
-import { Interactable } from './Interactables';
-import { Switch } from '../entities/interactables/Switch';
-import { Door } from '../entities/interactables/Doors';
+ import { Door } from '../entities/interactables/Doors';
 import { tiledPropertyfolder } from './tiledPropertyfolder';
 
 export default abstract class Level extends Phaser.Scene{
@@ -26,7 +23,6 @@ export default abstract class Level extends Phaser.Scene{
         this.mapName = scene_name + '_map';
         this.level = level;
         this.tileSets = [];
-        
     }
     preload(){
         this.interactables = this.add.group();
@@ -85,22 +81,22 @@ export default abstract class Level extends Phaser.Scene{
             const foldedProperties = tiledPropertyfolder(properties);
             console.log(foldedProperties)
             switch(type){
-                case 'Sign':{
-                const sign = new Sign(this, id, foldedProperties?.['text'] as string ?? '', {frame, ...rest}, '');
-                this.interactables.add(sign, true);
-                //this.add.existing(sign);
-                break;
-            };
-            case 'Switch': {
-                console.log('controls',properties[0].value );
-                const controls = foldedProperties?.['controls'] as number ?? 0
-                const button = new Switch(this, id, controls, rest);
-                this.interactables.add(button);
-                this.add.existing(button);
-                break;
-            }
+            //     case 'Sign':{
+            //     const sign = new Sign(this, id, foldedProperties?.['text'] as string ?? '', {frame, ...rest}, '');
+            //     this.interactables.add(sign, true);
+            //     //this.add.existing(sign);
+            //     break;
+            // };
+            // case 'Switch': {
+            //     console.log('controls',properties[0].value );
+            //     const controls = foldedProperties?.['controls'] as number ?? 0
+            //     const button = new Switch(this, id, controls, rest);
+            //     this.interactables.add(button);
+            //     this.add.existing(button);
+            //     break;
+            // }
             case 'Door': {
-                const door = new Door(this, id, foldedProperties?.['isLocked'] as boolean, foldedProperties?.['isOpen'] as boolean, {frame, ...rest},null);
+                const door = new Door(this, id, foldedProperties?.['isLocked'] as boolean, foldedProperties?.['isOpen'] as boolean, {frame, ...rest});
                 this.interactables.add(door)
                 this.add.existing(door);
                 break;

@@ -1,42 +1,31 @@
 import { Physics } from 'phaser';
-import { Interactable, InteractableSprite, SpriteConfig } from '../../utilities/Interactables';
+import { SpriteConfig, Trigger, TriggerZone } from '../../utilities/Interactables';
 import Level from '../../utilities/Level';
 import Player, { Player_States } from '../Player';
+import Enitity from '../Entity';
 
-export class Door extends InteractableSprite{
+export class Door extends Enitity{
     private isLocked: boolean;
     public isOpen: boolean;
-    private trigger: Interactable | null;
+    private trigger: TriggerZone | null;
     scene!: Level;
-    constructor(scene: Level, id:number, isLocked: boolean, isOpen: boolean, config: SpriteConfig, action: Player_States| null, control?: number){
-        super(scene, id, '', config)
+    constructor(scene: Level, id:number, isLocked: boolean, isOpen: boolean, config: SpriteConfig){
+        super(scene, config.x!, config.y!, config.name, config.frame)
         this.isLocked = false//isLocked;
         this.isOpen = isOpen;
-        this.trigger = null;
-        this.body.onCollide = !isOpen
+        this.trigger = new TriggerZone(scene, id, config)
         this.setName(config.name);
-        this.body.setSize(this.width, this.height)
-        if(this.isLocked){  
-            this.body.debugBodyColor = 215;
-
-            
-        }
-        
         console.log('door', this)
+        this.trigger.setOnTrigger(() => {
+            const interactionKey = scene.input.keyboard?.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+            if(!interactionKey) throw new Error('failed to create key')
+            if(!this.isLocked && scene.input.keyboard?.checkDown(interactionKey)){
+                this.setOpen();
+                console.log('is opening')
+            }
+        });
     }
 
-    public setTrigger(trigger: Interactable){
-        this.trigger = trigger;
-    }
-    public onInteract(source: Phaser.GameObjects.GameObject): void {
-        //if(source === this.scene.player && !this.isLocked){
-            this.toggleOpen();
-            console.log(`${this.name} is ${this.isOpen ? 'open' : 'closed'}`)
-        // }else {
-        //     console.log(`${this.name} is ${this.isLocked ? 'locked': 'unlocked'}`)
-        //     this.toggleLock();
-        // }
-    }
     private toggleLock(){
         this.isLocked = !this.isLocked;
         //play open/close animation
@@ -44,13 +33,17 @@ export class Door extends InteractableSprite{
     private toggleOpen() {
         this.isOpen = !this.isOpen;
         if(this.isOpen){
-            this.body.checkCollision.none = true;
+            this.body!.checkCollision.none = true;
         }
         else {
-            this.body.onCollide = true;
-            this.body.checkCollision.left = true;
-            this.body.checkCollision.none = false;
+            this.body!.onCollide = true;
+            this.body!.checkCollision.left = true;
+            this.body!.checkCollision.none = false;
         }
+    }
+    private setOpen(){
+        this.isOpen = true;
+        this.body!.enable = false
     }
     update(...args: any[]): void {
     }
