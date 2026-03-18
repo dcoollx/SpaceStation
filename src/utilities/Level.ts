@@ -2,9 +2,7 @@
 
 
 import TiledMap, { TiledLayer } from 'tiled-types'
-import StaticHazard from '../entities/Spike';
 import Player from '../entities/Player';
-import Spike from '../entities/Spike';
  import { Door } from '../entities/interactables/Doors';
 import { tiledPropertyfolder } from './tiledPropertyfolder';
 
@@ -28,7 +26,6 @@ export default abstract class Level extends Phaser.Scene{
     }
     preload(baseUrl?: string){
         this.load.setBaseURL(baseUrl)
-        console.log(this.load.baseURL, 'base url')
         this.load.json(this.levelKey, this.level)
         this.load.on(`filecomplete-json-${this.levelKey}`, (_: string, _2: unknown, level: TiledMap)=>{
              level.tilesets.forEach(({ name, image, tiles, tileheight: frameHeight, tilewidth: frameWidth, spacing, firstgid: startFrame }) =>{
@@ -41,6 +38,7 @@ export default abstract class Level extends Phaser.Scene{
                 })
 
             }
+            this.load.setBaseURL(baseUrl)
             this.load.spritesheet(name, encodeURI(image!), { frameWidth, frameHeight, spacing, startFrame})
             this.tileSets.push(name);
         })
@@ -50,7 +48,7 @@ export default abstract class Level extends Phaser.Scene{
                 this.load.image(name, encodeURI((rest as any).image));
             }
         })
-         this.load.tilemapTiledJSON(this.mapName,this.level)
+         this.load.tilemapTiledJSON(this.mapName,level)
         })
        
         if(!this.input.keyboard){
