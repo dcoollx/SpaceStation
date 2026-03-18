@@ -37,6 +37,7 @@
                  "height":21,
                  "id":18,
                  "name":"",
+                 "opacity":1,
                  "rotation":0,
                  "type":"Ledge",
                  "visible":false,
@@ -49,6 +50,7 @@
                  "height":32,
                  "id":20,
                  "name":"door switch",
+                 "opacity":1,
                  "properties":[
                         {
                          "name":"controls",
@@ -66,6 +68,7 @@
                  "height":96,
                  "id":22,
                  "name":"door-1",
+                 "opacity":1,
                  "properties":[
                         {
                          "name":"isLocked",
@@ -88,6 +91,7 @@
                  "height":160,
                  "id":23,
                  "name":"ladder-1",
+                 "opacity":1,
                  "rotation":0,
                  "type":"Ladder",
                  "visible":true,
@@ -122,13 +126,13 @@
  "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.12.0",
  "tileheight":32,
  "tilesets":[
         {
          "columns":4,
          "firstgid":1,
-         "image":"..\/assets\/prototype_tiles.png",
+         "image":"..\/..\/public\/assets\/prototype_tiles.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
@@ -157,6 +161,7 @@
                              "height":0,
                              "id":6,
                              "name":"spike collision",
+                             "opacity":1,
                              "polygon":[
                                     {
                                      "x":0,
