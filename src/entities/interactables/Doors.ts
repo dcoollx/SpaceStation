@@ -2,19 +2,19 @@ import { Physics } from 'phaser';
 import { SpriteConfig, Trigger, TriggerZone } from '../../utilities/Interactables';
 import Level from '../../utilities/Level';
 import Player, { Player_States } from '../Player';
-import Enitity from '../Entity';
+import Entity from '../Entity';
+import { EntityManager, EntityRegister } from '../../utilities/EntityManager';
 
-export class Door extends Enitity{
+export class Door extends Entity{
     private isLocked: boolean;
     public isOpen: boolean;
     private trigger: TriggerZone | null;
     scene!: Level;
-    constructor(scene: Level, id:number, isLocked: boolean, isOpen: boolean, config: SpriteConfig){
-        super(scene, config.x!, config.y!, config.name, config.frame)
-        this.isLocked = false//isLocked;
-        this.isOpen = isOpen;
-        this.trigger = new TriggerZone(scene, id, config)
-        this.setName(config.name);
+    constructor(scene: Phaser.Scene, x: number, y: number, texture: string | Phaser.Textures.Texture, frame?: string | number){
+        super(scene, x, y, texture, frame)
+        this.isLocked = true
+        this.isOpen = true
+        this.trigger = new TriggerZone(scene as Level, 1,  { x, y, height:0, width: 0, name: ''})
         console.log('door', this)
         this.trigger.setOnTrigger(() => {
             const interactionKey = scene.input.keyboard?.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)

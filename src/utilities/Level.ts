@@ -6,10 +6,10 @@ import Player from '../entities/Player';
  import { Door } from '../entities/interactables/Doors';
 import { tiledPropertyfolder } from './tiledPropertyfolder';
 
-export default abstract class Level extends Phaser.Scene{
+export default abstract class Level extends Phaser.Scene {
     private mapName:string;
     private level: string;
-    collisionLayer!: Phaser.Tilemaps.TilemapLayer;
+    collisionLayer: Phaser.GameObjects.Group | null;
     map!:Phaser.Tilemaps.Tilemap;
     player!: Player;
     interactables!: Phaser.GameObjects.Group;
@@ -23,6 +23,7 @@ export default abstract class Level extends Phaser.Scene{
         this.level = level;
         this.levelKey = scene_name + '_level';
         this.tileSets = [];
+        this.collisionLayer = null;;
     }
     preload(baseUrl?: string){
         this.load.setBaseURL(baseUrl)
@@ -47,6 +48,10 @@ export default abstract class Level extends Phaser.Scene{
             if(type === 'imagelayer'){
                 this.load.image(name, encodeURI((rest as any).image));
             }
+            if(type === 'objectgroup'){
+                // we may need to load any object images later, for now they are in same as map
+                console.log('a object layer was found')
+            }
         })
          this.load.tilemapTiledJSON(this.mapName,level)
         })
@@ -58,7 +63,8 @@ export default abstract class Level extends Phaser.Scene{
        
     }
     create(){
-        this.map = this.make.tilemap({ key: this.mapName });
+        this.collisionLayer = this.add.group();
+        this.map = this.make.tilemap({ key: this.mapName, });
         this.tileSets.forEach(tileSet=>{
             this.map.addTilesetImage(tileSet)
         });
@@ -71,11 +77,18 @@ export default abstract class Level extends Phaser.Scene{
             image.setOrigin(0);
             this.background = image;
         })
-
-        this.map.layers.forEach(layer => {
-            this.collisionLayer = this.map.createLayer(layer.name, this.map.tilesets.map(l=>l.name) )!.setCollisionByProperty({ isSolid: true});
-             
-        });
+       
+        const level: TiledMap = this.cache.json.get(this.levelKey)
+        level.layers.forEach(({name, type})=>{
+            if(type === 'objectgroup'){
+                this.map.createFromObjects('objects', { type: 'door', classType: Door})
+            }
+            if(type === 'tilelayer'){
+                console.log('layer',name)
+                this.collisionLayer!.add(this.map.createLayer(name, this.map.tilesets.map(l=>l.name))!.setCollisionByProperty({ isSolid: true}))
+            }
+        })
+        console.log('this map has ', this.map.layers, 'layers')
         // this.map.filterObjects('hazards', (obj)=>obj.name === 'spike').forEach(spike=>{
         //     console.log('adding spike', spike)
         //     const hazard = new Spike(this, spike.x, spike.y).setOrigin(0.5,1);

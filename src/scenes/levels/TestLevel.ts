@@ -29,7 +29,8 @@ export class TestLevel extends Level {
         this.sound.volume = 0.3;
         this.cameras.main.setZoom(2);
         //this.cameras.main.followOffset.set(-50,0);
-        this.player = new Player(this, 0,0, this.input.keyboard!.createCursorKeys())
+        this.player = new Player(this, 0,0, this.input.keyboard!.createCursorKeys());
+        console.log('collision layer', this.collisionLayer)
         this.physics.add.collider(this.player, this.collisionLayer);
         this.physics.add.collider(this.player, this.interactables);
        
