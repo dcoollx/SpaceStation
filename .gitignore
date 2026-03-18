@@ -1,7 +1,5 @@
 node_modules
-dist/bundle.js
-dist/assets/
-!*/dist/index.html
+dist/
 src/SpaceStation.tiled-session
 unused_assets
 coverage/**/*
