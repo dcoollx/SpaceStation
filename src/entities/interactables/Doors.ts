@@ -13,7 +13,12 @@ export class Door extends Entity{
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string | Phaser.Textures.Texture, frame?: string | number){
         super(scene, x, y, texture, frame)
         this.isLocked = true
-        this.isOpen = true
+        this.isOpen = true;
+        this.body = scene.physics.add.body(x, y, this.width, this.height)
+        this.body.onCollide = true;
+        this.body.checkCollision.left = true;
+        this.body.checkCollision.none = false;
+        (scene as Level).collisionLayer?.add(this)
         this.trigger = new TriggerZone(scene as Level, 1,  { x, y, height:0, width: 0, name: ''})
         console.log('door', this)
         this.trigger.setOnTrigger(() => {
