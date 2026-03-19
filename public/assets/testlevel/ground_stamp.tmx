@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="left-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="7">
+<map version="1.10" tiledversion="1.12.0" orientation="orthogonal" renderorder="left-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="7">
  <editorsettings>
   <export target="test.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32" tilecount="16" columns="4">
-  <image source="../assets/Mech_background_tileset_128x128.png" trans="ff00ff" width="128" height="128"/>
+  <image source="../../public/assets/testlevel/Mech_background_tileset_128x128.png" trans="ff00ff" width="128" height="128"/>
   <wangsets>
    <wangset name="all" type="mixed" tile="-1">
     <wangcolor name="ground" color="#ff0000" tile="-1" probability="1"/>
@@ -48,7 +48,7 @@
   </wangsets>
  </tileset>
  <imagelayer id="2" name="background" visible="0" locked="1" repeaty="1">
-  <image source="../assets/1024x1024 Blue Nebula 1.png" width="1024" height="1024"/>
+  <image source="../assets/1024x1024 Blue Nebula 1.png"/>
  </imagelayer>
  <layer id="1" name="Tile Layer 1" width="10" height="10">
   <data encoding="base64">
