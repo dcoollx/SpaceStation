@@ -5,6 +5,7 @@ import TiledMap, { TiledLayer } from 'tiled-types'
 import Player from '../entities/Player';
  import { Door } from '../entities/interactables/Doors';
 import { tiledPropertyfolder } from './tiledPropertyfolder';
+import { EntityManager } from './EntityManager';
 
 export default abstract class Level extends Phaser.Scene {
     private mapName:string;
@@ -23,7 +24,7 @@ export default abstract class Level extends Phaser.Scene {
         this.level = level;
         this.levelKey = scene_name + '_level';
         this.tileSets = [];
-        this.collisionLayer = null;;
+        this.collisionLayer = null;
     }
     preload(baseUrl?: string){
         this.load.setBaseURL(baseUrl)
@@ -39,7 +40,9 @@ export default abstract class Level extends Phaser.Scene {
                 })
 
             }
-            this.load.setBaseURL(baseUrl)
+            // tileset loading
+            this.load.setBaseURL(baseUrl);
+            console.log('loading', name)
             this.load.spritesheet(name, encodeURI(image!), { frameWidth, frameHeight, spacing, startFrame})
             this.tileSets.push(name);
         })
@@ -79,9 +82,18 @@ export default abstract class Level extends Phaser.Scene {
         })
        
         const level: TiledMap = this.cache.json.get(this.levelKey)
-        level.layers.forEach(({name, type})=>{
+        level.layers.forEach((layer)=>{
+            const {name, type } = layer
             if(type === 'objectgroup'){
-                this.map.createFromObjects('objects', { type: 'door', classType: Door})
+                layer.objects.forEach(object => {
+                    const classType = EntityManager.get(object.type)
+                    if (!classType){
+                        console.log(`didnt find ${object.type} in Entity`);
+                        return;
+                    }
+                     this.map.createFromObjects(name, { type: object.type, classType})
+                })
+               
             }
             if(type === 'tilelayer'){
                 console.log('layer',name)
@@ -98,7 +110,7 @@ export default abstract class Level extends Phaser.Scene {
         console.log(this.map.layers);
         this.map.setCollisionFromCollisionGroup(true, false, 'Collision')
         this.cameras.main.setBounds(0,0,this.game.scale.width * 3,this.game.scale.height);
-        console.log(this.map)
+        console.log(this.map);
         
     }
 

@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "test.json",
+    "activeFile": "",
     "expandedProjectPaths": [
         "."
     ],
@@ -19,6 +19,10 @@
         },
         "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmx#platform": {
             "dynamicWrapping": false
+        },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmx#star": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
         },
         "ground_stamp.tmx": {
             "scale": 1.5,
@@ -42,11 +46,11 @@
                 12,
                 13
             ],
-            "scale": 0.5,
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4800,
-                "y": 2399
+                "x": 636.3636363636364,
+                "y": 983.3333333333333
             }
         },
         "test.json#ground": {
@@ -79,12 +83,11 @@
     ],
     "map.height": 10,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
-    "map.lastUsedFormat": "tmx",
+    "map.lastUsedFormat": "json",
     "map.layerDataFormat": "1",
     "map.renderOrder": "2",
     "map.width": 10,
     "openFiles": [
-        "test.json"
     ],
     "project": "spacestation.tiled-project",
     "property.type": "bool",
@@ -94,9 +97,9 @@
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
-        "height": 32,
-        "width": 32
+        "height": 22,
+        "width": 24
     },
-    "tileset.type": 1,
+    "tileset.type": 0,
     "tileset.useTransparentColor": true
 }

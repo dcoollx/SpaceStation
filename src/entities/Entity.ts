@@ -12,6 +12,7 @@ export default abstract class Entity extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
 }
 
+
     
   addAnimation(animation : Array<Phaser.Types.Animations.Animation> | Phaser.Types.Animations.Animation){
     if(animation instanceof Array)

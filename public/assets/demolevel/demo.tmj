@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"demo.tmj"
+        }
+    },
  "height":19,
  "infinite":false,
  "layers":[
@@ -33,164 +41,20 @@
         {
          "draworder":"topdown",
          "id":3,
-         "locked":true,
          "name":"stars",
          "objects":[
                 {
                  "gid":13,
                  "height":22,
-                 "id":1,
+                 "id":18,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
-                 "type":"star",
+                 "type":"Star",
                  "visible":true,
                  "width":24,
-                 "x":29.3333333333333,
-                 "y":145.666666666667
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":2,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":112,
-                 "y":183
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":3,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":202.666666666667,
-                 "y":180.333333333333
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":4,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":266.666666666667,
-                 "y":95
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":5,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":506.666666666667,
-                 "y":245.666666666667
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":6,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":574.666666666667,
-                 "y":311
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":7,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":576,
-                 "y":117.666666666667
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":8,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":626.666666666667,
-                 "y":104.333333333333
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":9,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":681.333333333333,
-                 "y":120.333333333333
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":10,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":742.666666666667,
-                 "y":104.333333333333
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":11,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":308,
-                 "y":428.333333333333
-                }, 
-                {
-                 "gid":13,
-                 "height":22,
-                 "id":12,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"star",
-                 "visible":true,
-                 "width":24,
-                 "x":422.666666666667,
-                 "y":491
+                 "x":88.6289308176101,
+                 "y":406.895398874545
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -201,6 +65,7 @@
         {
          "draworder":"topdown",
          "id":4,
+         "locked":true,
          "name":"spawn",
          "objects":[
                 {
@@ -211,9 +76,9 @@
                  "rotation":0,
                  "type":"spawn",
                  "visible":true,
-                 "width":46.6666666666667,
+                 "width":46.6667,
                  "x":28,
-                 "y":466.666666666667
+                 "y":466.667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -222,7 +87,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":14,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"left-down",
  "tiledversion":"1.12.0",
@@ -239,31 +104,33 @@
          "spacing":0,
          "tilecount":12,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":0,
+                 "properties":[
+                        {
+                         "name":"isSolid",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
          "tilewidth":32,
          "transparentcolor":"#ff00ff"
         }, 
         {
-         "columns":0,
+         "class":"Star",
+         "columns":1,
          "firstgid":13,
-         "grid":
-            {
-             "height":1,
-             "orientation":"orthogonal",
-             "width":1
-            },
+         "image":"star.png",
+         "imageheight":22,
+         "imagewidth":24,
          "margin":0,
          "name":"star",
          "spacing":0,
          "tilecount":1,
          "tileheight":22,
-         "tiles":[
-                {
-                 "id":0,
-                 "image":"star.png",
-                 "imageheight":22,
-                 "imagewidth":24
-                }],
-         "tilewidth":24
+         "tilewidth":24,
+         "transparentcolor":"#ff00ff"
         }],
  "tilewidth":32,
  "type":"map",

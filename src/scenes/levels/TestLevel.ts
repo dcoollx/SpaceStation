@@ -24,7 +24,7 @@ export class TestLevel extends Level {
     create() {
         super.create();
         this.physics.world.setBounds(0,0,this.map.widthInPixels, this.map.heightInPixels);
-        this.physics.world.gravity.y = 700;
+        this.physics.world.gravity.y = 700; // make this config-able
         const music = this.sound.play('theme',{loop:true});
         this.sound.volume = 0.3;
         this.cameras.main.setZoom(2);

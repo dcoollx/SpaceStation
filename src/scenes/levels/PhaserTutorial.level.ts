@@ -1,5 +1,6 @@
 import Player from "../../entities/Player";
 import Level from "../../utilities/Level";
+import { Star } from "../../entities/demo/Star";
 
 export class TutorialLevel extends Level{
     constructor(){
@@ -9,6 +10,8 @@ export class TutorialLevel extends Level{
     preload(baseUrl?: string): void {
         super.preload('assets/demolevel');
         this.load.spritesheet('player-idle', 'dude.png', { frameWidth: 32, frameHeight: 48, startFrame:6, endFrame: 6 });
+        this.load.spritesheet('player-jump', 'dude.png', { frameWidth: 32, frameHeight: 48, startFrame:6, endFrame: 6 });
+        this.load.spritesheet('player-run', 'dude.png', { frameWidth: 32, frameHeight: 48, startFrame:1, endFrame: 5 });
     }
 
     create(): void {
@@ -21,6 +24,8 @@ export class TutorialLevel extends Level{
     }
 
     update(time: number, delta: number): void {
+        super.update(time, delta);
         this.player.update()
+        Star.update();
     }
 }
