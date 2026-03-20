@@ -18,6 +18,7 @@ export default abstract class Level extends Phaser.Scene {
     public background!: Phaser.GameObjects.TileSprite; 
     public tileSets: Array<string>
     levelKey: string;
+    zones!: Phaser.GameObjects.Group;
     constructor(level: string, scene_name : string,){
         super({key:scene_name});
         this.mapName = scene_name + '_map';
@@ -66,7 +67,8 @@ export default abstract class Level extends Phaser.Scene {
        
     }
     create(){
-         this.interactables = this.add.group()
+        this.interactables = this.add.group()
+        this.zones = this.add.group()
         this.collisionLayer = this.add.group();
         this.map = this.make.tilemap({ key: this.mapName, });
         this.tileSets.forEach(tileSet=>{
@@ -90,9 +92,10 @@ export default abstract class Level extends Phaser.Scene {
                     const classType = EntityManager.get(object.type)
                     if (!classType){
                         console.log(`didnt find ${object.type} in Entity`);
+                        console.log(EntityManager.list)
                         return;
                     }
-                     this.map.createFromObjects(name, { type: object.type, classType})
+                     this.map.createFromObjects(name, { type: object.type, classType, })
                 })
                
             }

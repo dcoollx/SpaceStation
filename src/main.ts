@@ -16,7 +16,7 @@ const config: Phaser.Types.Core.GameConfig ={
         default: 'arcade',
         arcade: {
             gravity: { y: 300, x:0 },
-            debug: settings.debug
+            debug: false//settings.debug
         }
     },            
     scale : {
@@ -30,5 +30,5 @@ const config: Phaser.Types.Core.GameConfig ={
     scene :  [TutorialLevel]
 };
 
-
+localStorage.setItem('settings', JSON.stringify(settings))
 new Game(config, true);

@@ -3,7 +3,7 @@ import Level from "../../utilities/Level";
 import Entity from "../Entity";
 
 @EntityRegister
-export class Star extends Entity{
+export class Star extends Phaser.Physics.Arcade.Sprite{
     constructor(scene: Level, x: number, y: number, texture: string | Phaser.Textures.Texture, frame?: string | number){
         super(scene, x, y, texture, frame);
         this.body = scene.physics.add.existing(this).body;

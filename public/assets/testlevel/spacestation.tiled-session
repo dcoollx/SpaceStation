@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj",
     "expandedProjectPaths": [
         "."
     ],
@@ -17,8 +17,20 @@
             "dynamicWrapping": true,
             "scaleInEditor": 1
         },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj": {
+            "scale": 0.75525,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 399.86759351208207,
+                "y": 303.87288977159886
+            }
+        },
         "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj#platform": {
-            "dynamicWrapping": false
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj#star": {
+            "scaleInDock": 1
         },
         "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmx#platform": {
             "dynamicWrapping": false
@@ -91,10 +103,12 @@
     "map.renderOrder": "2",
     "map.width": 10,
     "openFiles": [
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj"
     ],
     "project": "spacestation.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj",
         "test.json",
         "ground_stamp.tmx"
     ],

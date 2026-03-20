@@ -1,6 +1,7 @@
 import Player from "../../entities/Player";
 import Level from "../../utilities/Level";
 import { Star } from "../../entities/demo/Star";
+import { Spawn } from "../../entities/Spawn";
 
 export class TutorialLevel extends Level{
     score: number;
@@ -25,17 +26,20 @@ export class TutorialLevel extends Level{
         this.hud = this.add.text(16,16, 'score: 0', {fontSize: '32px', color: '#000'});
         this.physics.world.setBounds(0,0,this.map.widthInPixels, this.map.heightInPixels);
         this.physics.world.gravity.y = 700;
-        this.player = new Player(this, 0,0, this.input.keyboard!.createCursorKeys());
+        const spawn = this.zones.getMatching('name', 'player')[0] as Phaser.GameObjects.Zone;
+        this.player = new Player(this, spawn.x,spawn.y, this.input.keyboard!.createCursorKeys());
         this.physics.add.collider(this.player, this.collisionLayer!);
         this.physics.add.overlap(this.player, this.interactables, (player, object)=>{
             collect_star.play();
             (object as Star).onCollide();
         });
+        Star.update();
+        Spawn.needToFix();
     }
 
     update(time: number, delta: number): void {
         super.update(time, delta);
         this.player.update()
-        Star.update();
+        
     }
 }
