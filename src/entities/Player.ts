@@ -115,7 +115,7 @@ export default class Player extends Character{
                 sm.go(Player_States.idle);
                 return;
             }
-            this.play('fall', true);
+            //this.play('fall', true);
         });
         sm.on(Player_States.idle,()=>{
             this.play('idle', true);

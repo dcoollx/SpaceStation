@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "test.json",
+    "activeFile": "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,6 +11,32 @@
     "fileStates": {
         "": {
             "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "#star": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj": {
+            "scale": 0.75525,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 399.86759351208207,
+                "y": 303.87288977159886
+            }
+        },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj#platform": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj#star": {
+            "scaleInDock": 1
+        },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmx#platform": {
+            "dynamicWrapping": false
+        },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmx#star": {
+            "dynamicWrapping": true,
             "scaleInEditor": 1
         },
         "ground_stamp.tmx": {
@@ -32,14 +58,14 @@
         },
         "test.json": {
             "expandedObjectLayers": [
-                13,
-                12
+                12,
+                13
             ],
-            "scale": 0.5,
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4800,
-                "y": 2399
+                "x": 636.3636363636364,
+                "y": 983.3333333333333
             }
         },
         "test.json#ground": {
@@ -64,32 +90,33 @@
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data",
-    "last.imagePath": "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/testlevel",
+    "last.exportedFilePath": "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel",
+    "last.imagePath": "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel",
     "last.worldFilePath": "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data",
     "loadedWorlds": [
         "C:/Users/dj/Documents/Webdesign/Projects/GameDev/Phaser/SpaceStation/src/data/Station.world"
     ],
     "map.height": 10,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
-    "map.lastUsedFormat": "tmx",
+    "map.lastUsedFormat": "json",
     "map.layerDataFormat": "1",
     "map.renderOrder": "2",
     "map.width": 10,
     "openFiles": [
-        "test.json"
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj"
     ],
     "project": "spacestation.tiled-project",
-    "property.type": "object",
+    "property.type": "bool",
     "recentFiles": [
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj",
         "test.json",
         "ground_stamp.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
-        "height": 40,
-        "width": 32
+        "height": 22,
+        "width": 24
     },
-    "tileset.type": 1,
+    "tileset.type": 0,
     "tileset.useTransparentColor": true
 }
