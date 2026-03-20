@@ -17,6 +17,9 @@
             "dynamicWrapping": true,
             "scaleInEditor": 1
         },
+        "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmj#platform": {
+            "dynamicWrapping": false
+        },
         "C:/Users/FX-lab/Documents/projects/SpaceStation/public/assets/demolevel/demo.tmx#platform": {
             "dynamicWrapping": false
         },

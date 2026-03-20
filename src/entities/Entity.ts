@@ -22,3 +22,4 @@ export default abstract class Entity extends Phaser.Physics.Arcade.Sprite {
   }
 
 }
+

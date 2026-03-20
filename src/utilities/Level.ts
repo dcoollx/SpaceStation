@@ -66,6 +66,7 @@ export default abstract class Level extends Phaser.Scene {
        
     }
     create(){
+         this.interactables = this.add.group()
         this.collisionLayer = this.add.group();
         this.map = this.make.tilemap({ key: this.mapName, });
         this.tileSets.forEach(tileSet=>{
