@@ -1,11 +1,9 @@
 /// <reference path="../custom.d.ts"/>
 
 
-import TiledMap, { TiledLayer } from 'tiled-types'
+import TiledMap from 'tiled-types'
 import Player from '../entities/Player';
- import { Door } from '../entities/interactables/Doors';
-import { tiledPropertyfolder } from './tiledPropertyfolder';
-import { EntityManager } from './EntityManager';
+import { EntityManager, EntityConstructor } from './EntityManager';
 
 export default abstract class Level extends Phaser.Scene {
     private mapName:string;
@@ -19,13 +17,18 @@ export default abstract class Level extends Phaser.Scene {
     public tileSets: Array<string>
     levelKey: string;
     zones!: Phaser.GameObjects.Group;
+    tileImages: string[];
     constructor(level: string, scene_name : string,){
         super({key:scene_name});
         this.mapName = scene_name + '_map';
         this.level = level;
         this.levelKey = scene_name + '_level';
         this.tileSets = [];
+        this.tileImages = []
         this.collisionLayer = null;
+    }
+    static registerObjects(constructors:  Array<new (...args: any[]) =>any>){
+        constructors.forEach((con) => EntityManager.register(con))
     }
     preload(baseUrl?: string){
         this.load.setBaseURL(baseUrl)
@@ -33,19 +36,17 @@ export default abstract class Level extends Phaser.Scene {
         this.load.on(`filecomplete-json-${this.levelKey}`, (_: string, _2: unknown, level: TiledMap)=>{
              level.tilesets.forEach(({ name, image, tiles, tileheight: frameHeight, tilewidth: frameWidth, spacing, firstgid: startFrame }) =>{
             if(!image){
-                // inside a collection of images
                 tiles!.forEach((tile) =>{
-                    
-                    this.load.image(name + tile.id, tile.image);
+                    this.load.image(tile.image!, tile.image);
+                    this.tileImages.push(name + tile.id);
                     return;
                 })
 
+            } else {
+            this.load.spritesheet(name, encodeURI(image), { frameWidth, frameHeight, spacing, startFrame})
             }
-            // tileset loading
-            this.load.setBaseURL(baseUrl);
-            console.log('loading', name)
-            this.load.spritesheet(name, encodeURI(image!), { frameWidth, frameHeight, spacing, startFrame})
             this.tileSets.push(name);
+
         })
 
         level.layers.forEach(({name, type, ...rest })=>{
@@ -54,10 +55,11 @@ export default abstract class Level extends Phaser.Scene {
             }
             if(type === 'objectgroup'){
                 // we may need to load any object images later, for now they are in same as map
-                console.log('a object layer was found')
+                // this.load.image(name, encodeURI((rest as any).image))
             }
         })
          this.load.tilemapTiledJSON(this.mapName,level)
+         this.load.start()
         })
        
         if(!this.input.keyboard){
@@ -70,10 +72,12 @@ export default abstract class Level extends Phaser.Scene {
         this.interactables = this.add.group()
         this.zones = this.add.group()
         this.collisionLayer = this.add.group();
-        this.map = this.make.tilemap({ key: this.mapName, });
-        this.tileSets.forEach(tileSet=>{
-            this.map.addTilesetImage(tileSet)
-        });
+        this.map = this.make.tilemap({ key: this.mapName });
+        this.map.tilesets.forEach((ts, i)=>{
+            const key = ts.name
+            this.map.addTilesetImage(ts.name)
+        })
+       
 
 
         
@@ -91,8 +95,8 @@ export default abstract class Level extends Phaser.Scene {
                 layer.objects.forEach(object => {
                     const classType = EntityManager.get(object.type)
                     if (!classType){
-                        console.log(`didnt find ${object.type} in Entity`);
-                        console.log(EntityManager.list)
+                        console.debug(`didnt find ${object.type} in Entity`);
+                        console.debug(EntityManager.list)
                         return;
                     }
                      this.map.createFromObjects(name, { type: object.type, classType, })
@@ -100,18 +104,9 @@ export default abstract class Level extends Phaser.Scene {
                
             }
             if(type === 'tilelayer'){
-                console.log('layer',name)
                 this.collisionLayer!.add(this.map.createLayer(name, this.map.tilesets.map(l=>l.name))!.setCollisionByProperty({ isSolid: true}))
             }
         })
-        console.log('this map has ', this.map.layers, 'layers')
-        // this.map.filterObjects('hazards', (obj)=>obj.name === 'spike').forEach(spike=>{
-        //     console.log('adding spike', spike)
-        //     const hazard = new Spike(this, spike.x, spike.y).setOrigin(0.5,1);
-        //     this.physics.add.existing(hazard, true);
-        // })
-        //interactions
-        console.log(this.map.layers);
         this.map.setCollisionFromCollisionGroup(true, false, 'Collision')
         this.cameras.main.setBounds(0,0,this.game.scale.width * 3,this.game.scale.height);
         console.log(this.map);
