@@ -72,7 +72,7 @@ export default class Player extends Character{
             repeat: 0
         },{
             key: 'run',
-            frames: this.scene.anims.generateFrameNames('player-run', { frames: [0, 1, 2, 3, 5, 6, 7, 8] }),
+            frames: this.scene.anims.generateFrameNames('player-run'),
             frameRate: 8,
             repeat: 0
         }]);

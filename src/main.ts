@@ -27,7 +27,7 @@ const config: Phaser.Types.Core.GameConfig ={
     backgroundColor: 'blue',
     transparent: true,
     clearBeforeRender: false,
-    scene :  [TutorialLevel]
+    scene :  [TestLevel]
 };
 
 localStorage.setItem('settings', JSON.stringify(settings))
