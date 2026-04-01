@@ -16,7 +16,7 @@ export class TestLevel extends Level {
         this.load.setBaseURL('assets')
         this.load.audio('theme', 'sounds/Space_Station_Title_Screen.mp3');
         this.load.spritesheet('player-idle', 'player/space-marine-idle.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
-        this.load.spritesheet('player-run', 'player/space-marine-run.png', { frameWidth: 35, frameHeight: 48, spacing: 13 });
+        this.load.spritesheet('player-run', 'player/walk-right/walk-right.spritesheet.png', { frameWidth: 256, frameHeight: 256, spacing: 1 });
         this.load.spritesheet('player-jump', 'player/space-marine-jump.png', { frameWidth: 34, frameHeight: 32, spacing: 2 });
         this.load.spritesheet('spike', 'player/space-marine-jump.png', {frameWidth: 32, frameHeight:32} )
         console.timeEnd('loading')
